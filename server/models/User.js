@@ -25,7 +25,16 @@ const userSchema = new Schema({
     required: true,
     minlength: 5
   },
-  orders: [Order.schema]
+  rate: {
+    type: Number,
+    required: true,
+    default: 0
+  },
+  workouts: [{ 
+    type: Schema.Types.ObjectId,
+    ref: 'Workouts',
+    required: true
+  }]
 });
 
 // set up pre-save middleware to create password
