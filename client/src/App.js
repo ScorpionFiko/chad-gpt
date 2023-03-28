@@ -19,6 +19,10 @@ import Success from './pages/Success';
 import OrderHistory from './pages/OrderHistory';
 import { Provider } from 'react-redux';
 import store from './utils/store';
+import MainLanding from './pages/MainLanding';
+import Dashboard from './pages/Dashboard';
+import BuildWorkout from './pages/BuildWorkout';
+import Footer from './components/Footer';
 
 
 const httpLink = createHttpLink({
@@ -46,7 +50,7 @@ function App() {
       <Provider store={store}>
         <Router>
           <div>
-            <Nav />
+            {/*<Nav />*/}
             <Switch>
               <Route exact path="/" component={Home} />
               <Route exact path="/login" component={Login} />
@@ -54,8 +58,12 @@ function App() {
               <Route exact path="/success" component={Success} />
               <Route exact path="/orderHistory" component={OrderHistory} />
               <Route exact path="/products/:id" component={Detail} />
+              <Route exact path='/mainLanding' component={MainLanding} /> {/* This will eventually be our default route */}
+              <Route exact path='/dashboard' component={Dashboard} /> {/* This will be contain navbar, accessed upon login */}
+              <Route exact path='/buildWorkout' component={BuildWorkout} /> {/* This will be accessed through nav in dashboard */}
               <Route component={NoMatch} />
             </Switch>
+            <Footer />
 
           </div>
         </Router>

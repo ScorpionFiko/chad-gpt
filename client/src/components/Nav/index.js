@@ -10,7 +10,12 @@ function Nav() {
         <ul className="flex-row">
           <li className="mx-1">
             <Link to="/orderHistory">
-              Order History
+              My Workouts{/* This will generate workoutcard components */}
+            </Link>
+          </li>
+          <li className="mx-1">
+            <Link to="/orderHistory">
+             Build a Workout{/* This will link to buildworkout page */}
             </Link>
           </li>
           <li className="mx-1">
