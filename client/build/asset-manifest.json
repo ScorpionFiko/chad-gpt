@@ -1,0 +1,25 @@
+{
+  "files": {
+    "main.css": "/static/css/main.82b3228f.chunk.css",
+    "main.js": "/static/js/main.5f9248b8.chunk.js",
+    "main.js.map": "/static/js/main.5f9248b8.chunk.js.map",
+    "runtime-main.js": "/static/js/runtime-main.c62b8046.js",
+    "runtime-main.js.map": "/static/js/runtime-main.c62b8046.js.map",
+    "static/js/2.eded2d05.chunk.js": "/static/js/2.eded2d05.chunk.js",
+    "static/js/2.eded2d05.chunk.js.map": "/static/js/2.eded2d05.chunk.js.map",
+    "index.html": "/index.html",
+    "precache-manifest.6d41350a6f3d61f1cf820897f663f08c.js": "/precache-manifest.6d41350a6f3d61f1cf820897f663f08c.js",
+    "service-worker.js": "/service-worker.js",
+    "static/css/main.82b3228f.chunk.css.map": "/static/css/main.82b3228f.chunk.css.map",
+    "static/js/2.eded2d05.chunk.js.LICENSE.txt": "/static/js/2.eded2d05.chunk.js.LICENSE.txt",
+    "static/js/main.5f9248b8.chunk.js.LICENSE.txt": "/static/js/main.5f9248b8.chunk.js.LICENSE.txt",
+    "static/media/spinner-small.gif": "/static/media/spinner-small.6a4e8ffd.gif",
+    "static/media/spinner.gif": "/static/media/spinner.ab497855.gif"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.c62b8046.js",
+    "static/js/2.eded2d05.chunk.js",
+    "static/css/main.82b3228f.chunk.css",
+    "static/js/main.5f9248b8.chunk.js"
+  ]
+}
