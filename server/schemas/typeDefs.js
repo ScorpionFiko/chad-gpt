@@ -22,12 +22,47 @@ const typeDefs = gql`
     products: [Product]
   }
 
+  type MyProgressExercise {
+    exerciseId: ID
+    sets: [MyProgressSetsAndReps]
+  }
+
+  type MyProgressSetsAndReps {
+    set: Int
+    reps: Int
+  }
+
+
+  type MyProgressDetails {
+    _id: ID
+    date: String
+    workoutId: ID
+    exercises: [MyProgressExercise]
+  }
+    
+  
+
+
+  type WorkoutAnswers {
+    _id: ID
+    answer: String
+  }
+
+  type WorkoutQuestions {
+    _id: ID
+    question: String,
+    answerType: String,
+    validation: String,
+    answers: [WorkoutAnswers]
+  }
+
   type User {
     _id: ID
     firstName: String
     lastName: String
     email: String
-    orders: [Order]
+    rate: Float
+    # workouts: [String]
   }
 
   type Checkout {
@@ -46,6 +81,8 @@ const typeDefs = gql`
     user: User
     order(_id: ID!): Order
     checkout(products: [ID]!): Checkout
+    workoutQuestions: [WorkoutQuestions]
+    myProgressDetails: [MyProgressDetails]
   }
 
   type Mutation {
