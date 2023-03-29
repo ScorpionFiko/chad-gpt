@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 
 const { Schema } = mongoose;
 const bcrypt = require('bcrypt');
-const Order = require('./Order');
+const Workouts = require('./Workouts')
 
 const userSchema = new Schema({
   firstName: {
@@ -32,8 +32,8 @@ const userSchema = new Schema({
   },
   workouts: [{ 
     type: Schema.Types.ObjectId,
-    ref: 'Workouts',
-    required: true
+    ref: Workouts,
+    required: false
   }]
 });
 

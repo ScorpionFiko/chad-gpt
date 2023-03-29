@@ -1,6 +1,9 @@
 const db = require('./connection');
 const { User, Product, Category, WorkoutQuestions, MyProgressDetails } = require('../models');
 const {Schema, Types} = require("mongoose");
+const exerciseRoutine = require("./routine");
+const Workouts = require('../models/Workouts');
+const WorkoutRoutines = require('../models/WorkoutRoutine');
 
 db.once('open', async () => {
   await WorkoutQuestions.deleteMany();
@@ -210,8 +213,17 @@ db.once('open', async () => {
     }]
   }])
   console.log('my progress seeded');
-  await Category.deleteMany();
 
+
+  await Workouts.deleteMany();
+  const workouts = await Workouts.insertMany({
+    workoutName: 'Marios GPT',
+    routine: exerciseRoutine});
+  console.log('my workouts seeded');
+
+
+
+  await Category.deleteMany();
   const categories = await Category.insertMany([
     { name: 'Food' },
     { name: 'Household Supplies' },
@@ -338,7 +350,7 @@ db.once('open', async () => {
 
   await User.deleteMany();
 
-  await User.create({
+  let user = await User.create({
     firstName: 'Pamela',
     lastName: 'Washington',
     email: 'pamela@testmail.com',
@@ -349,6 +361,13 @@ db.once('open', async () => {
       }
     ]
   });
+
+  workouts.forEach(async (workout) => {
+    await User.updateOne({_id: user._id},
+      {$addToSet: {workouts: { _id: workout._id }}},
+      {new: true})
+  });
+  
 
   await User.create({
     firstName: 'Elijah',
