@@ -20,6 +20,8 @@ const myProgressDetails = new Schema({
     sets: [myProgressSetsAndReps]
   }],
 
+},{
+  collection: 'myprogress'
 });
 
 const MyProgressDetails = mongoose.model('MyProgress', myProgressDetails);

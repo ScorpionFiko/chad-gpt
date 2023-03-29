@@ -23,7 +23,8 @@ const workoutQuestions = new Schema({
     // regex for validating input
   },
   answers: [workoutAnswerSchema]
-});
+},
+{ collection: 'workoutquestions' });
 
 const WorkoutQuestions = mongoose.model('WorkoutQuestions', workoutQuestions);
 

@@ -40,7 +40,29 @@ const typeDefs = gql`
     exercises: [MyProgressExercise]
   }
     
-  
+  type WorkoutExercise {
+    _id: ID
+    exerciseName: String
+    exerciseType: String
+    sets: Int
+    reps: Int
+    secondsRest: Int
+    minutesDuration: Float
+    intensity: String
+  }
+
+  type WorkoutRoutine {
+    _id: ID
+    day: String
+    exercises: [WorkoutExercise]
+  }
+
+  type Workouts {
+    _id: ID
+    workoutName: String
+    dateCreated: String
+    routine: [WorkoutRoutine]
+  }
 
 
   type WorkoutAnswers {
@@ -62,7 +84,7 @@ const typeDefs = gql`
     lastName: String
     email: String
     rate: Float
-    # workouts: [String]
+    workouts: [Workouts]
   }
 
   type Checkout {
