@@ -1,10 +1,10 @@
 import React from 'react';
+import './style.css';
 
 function Banner() {
     return (
         <div>
-            <img src="../../assets/spinner.gif" />
-            <p>This will be our main banner, image or logo</p>
+            <img className="banner-container"src="./chad.png" alt="Website Logo"/>
         </div>
     )
 }
