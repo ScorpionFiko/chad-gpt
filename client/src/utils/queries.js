@@ -50,21 +50,31 @@ export const QUERY_CATEGORIES = gql`
 
 export const QUERY_USER = gql`
   {
-    user {
-      firstName
-      lastName
-      orders {
+  user {
+    _id
+    firstName
+    lastName
+    email
+    rate
+    workouts {
+      _id
+      workoutName
+      dateCreated
+      routine {
         _id
-        purchaseDate
-        products {
+        day
+        exercises {
           _id
-          name
-          description
-          price
-          quantity
-          image
+          exerciseName
+          exerciseType
+          sets
+          reps
+          secondsRest
+          minutesDuration
+          intensity
         }
       }
     }
   }
+}
 `;
