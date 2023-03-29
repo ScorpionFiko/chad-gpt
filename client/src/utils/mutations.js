@@ -35,17 +35,26 @@ export const LOGIN = gql`
 `;
 
 export const ADD_ORDER = gql`
-  mutation addOrder($products: [ID]!) {
-    addOrder(products: $products) {
-      purchaseDate
-      products {
+  mutation saveWorkout($workoutName: String!, $routine: [InputWorkoutRoutine]) {
+    saveWorkout(workoutName: $workoutName, routine: $routine) {
+      _id
+      workouts {
         _id
-        name
-        description
-        price
-        quantity
-        category {
-          name
+        workoutName
+        dateCreated
+        routine {
+          _id
+          day
+          exercises {
+            _id
+            exerciseName
+            exerciseType
+            sets
+            reps
+            secondsRest
+            minutesDuration
+            intensity
+          }
         }
       }
     }

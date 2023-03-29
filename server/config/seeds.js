@@ -1,5 +1,5 @@
 const db = require('./connection');
-const { User, Product, Category, WorkoutQuestions, MyProgressDetails } = require('../models');
+const { User, Product, Category, WorkoutQuestions, MyProgressDetails, Settings } = require('../models');
 const {Schema, Types} = require("mongoose");
 const exerciseRoutine = require("./routine");
 const Workouts = require('../models/Workouts');
@@ -221,7 +221,11 @@ db.once('open', async () => {
     routine: exerciseRoutine});
   console.log('my workouts seeded');
 
-
+  await Settings.deleteMany();
+  const settings = await Settings.insertMany([
+    {key:"OpenAPI", value:"TEST!@#"},
+    {key:"GoogleAPI", value:"TEST123"}]
+    )
 
   await Category.deleteMany();
   const categories = await Category.insertMany([

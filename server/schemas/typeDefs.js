@@ -57,6 +57,23 @@ const typeDefs = gql`
     exercises: [WorkoutExercise]
   }
 
+
+  input InputWorkoutExercise {
+    exerciseName: String
+    exerciseType: String
+    sets: Int
+    reps: Int
+    secondsRest: Int
+    minutesDuration: Float
+    intensity: String
+  }
+
+  input InputWorkoutRoutine {
+    day: String
+    exercises: [InputWorkoutExercise]
+  }
+
+
   type Workouts {
     _id: ID
     workoutName: String
@@ -96,6 +113,11 @@ const typeDefs = gql`
     user: User
   }
 
+  type Settings {
+    key: String
+    value: String
+  }
+
   type Query {
     categories: [Category]
     products(category: ID, name: String): [Product]
@@ -106,13 +128,16 @@ const typeDefs = gql`
     user: User
     workoutQuestions: [WorkoutQuestions]
     myProgressDetails: [MyProgressDetails]
+    settings: [Settings]
+    setting(key: String): Settings
   }
 
   type Mutation {
     addUser(firstName: String!, lastName: String!, email: String!, password: String!): Auth
     login(email: String!, password: String!): Auth
-    # addWorkout():
-    
+    saveWorkout(workoutName: String!, routine: [InputWorkoutRoutine]): User
+
+
     addOrder(products: [ID]!): Order
     updateUser(firstName: String, lastName: String, email: String, password: String): User
     updateProduct(_id: ID!, quantity: Int!): Product
