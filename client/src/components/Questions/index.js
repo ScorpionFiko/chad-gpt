@@ -1,13 +1,22 @@
 import React from "react";
-
 import { useState } from "react";
+
+
 import { OpenAIApi, Configuration } from "openai";
+
+import { config } from "dotenv";
+config(); // load .env file
+
+const apiKey = process.env.REACT_APP_API_KEY;
+console.log(apiKey);
+
 
 const openai = new OpenAIApi(
   new Configuration({
-    apiKey: process.env.API_KEY,
+    apiKey: process.env.REACT_APP_API_KEY,
   })
 );
+
 
 // State to hold user input
 function ExerciseRoutineGenerator() { 
@@ -42,6 +51,8 @@ function ExerciseRoutineGenerator() {
       fitnessGoal,
     } = fitnessInfo;
 
+console.log(fitnessInfo);
+
     const aiPrompt = `
       ${age} years of age, ${height} in height, ${weight}lbs, ${gender}, able to exercise ${exerciseFrequency} times per week, access to ${equipment}, end goal is ${fitnessGoal} and 1 month to achieve goal
 
@@ -66,7 +77,9 @@ function ExerciseRoutineGenerator() {
         ],
       }
     `;
+    console.log(aiPrompt);
 
+async function callApi() {
     const res = await openai.createChatCompletion({
         model: "gpt-3.5-turbo",
         messages: [{ role: "user", content: aiPrompt }],
@@ -74,7 +87,10 @@ function ExerciseRoutineGenerator() {
     });
     console.log(res.data.choices[0].message.content);
 
-    // setExerciseRoutine(JSON.parse(res.data.choices[0].text)); 
+    setExerciseRoutine(JSON.parse(res.data.choices[0].text)); 
+}
+    await callApi();
+
   };
 
   return (
