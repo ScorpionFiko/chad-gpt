@@ -8,15 +8,15 @@ import {
 } from '@apollo/client';
 import { setContext } from '@apollo/client/link/context';
 
-import Home from './pages/Home';
-import Detail from './pages/Detail';
+//import Home from './pages/Home';
+//import Detail from './pages/Detail';
 import NoMatch from './pages/NoMatch';
-import Login from './pages/Login';
-import Signup from './pages/Signup';
-import Nav from './components/Nav';
+//import Login from './pages/Login';
+//import Signup from './pages/Signup';
+//import Nav from './components/Nav';
 // import { StoreProvider } from './utils/GlobalState';
-import Success from './pages/Success';
-import OrderHistory from './pages/OrderHistory';
+//import Success from './pages/Success';
+//import OrderHistory from './pages/OrderHistory';
 import { Provider } from 'react-redux';
 import store from './utils/store';
 import MainLanding from './pages/MainLanding';
@@ -52,13 +52,13 @@ function App() {
           <div>
             {/*<Nav />*/}
             <Switch>
-              <Route exact path="/" component={Home} />
-              <Route exact path="/login" component={Login} />
-              <Route exact path="/signup" component={Signup} />
-              <Route exact path="/success" component={Success} />
-              <Route exact path="/orderHistory" component={OrderHistory} />
-              <Route exact path="/products/:id" component={Detail} />
-              <Route exact path='/mainLanding' component={MainLanding} /> {/* This will eventually be our default route */}
+              {/*<Route exact path="/" component={Home} />*/}
+              {/*<Route exact path="/login" component={Login} />*/}
+              {/*<Route exact path="/signup" component={Signup} />*/}
+              {/*<Route exact path="/success" component={Success} />*/}
+              {/*<Route exact path="/orderHistory" component={OrderHistory} />*/}
+              {/*<Route exact path="/products/:id" component={Detail} />*/}
+              <Route exact path='/' component={MainLanding} /> {/* This will eventually be our default route */}
               <Route exact path='/dashboard' component={Dashboard} /> {/* This will be contain navbar, accessed upon login */}
               <Route exact path='/buildWorkout' component={BuildWorkout} /> {/* This will be accessed through nav in dashboard */}
               <Route component={NoMatch} />
