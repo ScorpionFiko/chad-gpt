@@ -6,6 +6,29 @@ export const LOGIN = gql`
       token
       user {
         _id
+        firstName
+        lastName
+        email
+        rate
+        workouts {
+          _id
+          workoutName
+          dateCreated
+          routine {
+            _id
+            day
+            exercises {
+              _id
+              exerciseName
+              exerciseType
+              sets
+              reps
+              secondsRest
+              minutesDuration
+              intensity
+            }
+          }
+        }
       }
     }
   }

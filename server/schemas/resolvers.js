@@ -98,6 +98,28 @@ myProgressDetails: async () => {
 
       return { token, user };
     },
+    login: async (parent, { email, password }) => {
+      const user = await User.findOne({ email }).populate('workouts');
+
+      if (!user) {
+        throw new AuthenticationError('Incorrect credentials');
+      }
+
+      const correctPw = await user.isCorrectPassword(password);
+
+      if (!correctPw) {
+        throw new AuthenticationError('Incorrect credentials');
+      }
+
+      const token = signToken(user);
+
+      return { token, user };
+    },
+
+
+
+
+
     addOrder: async (parent, { products }, context) => {
       console.log(context);
       if (context.user) {
@@ -122,23 +144,7 @@ myProgressDetails: async () => {
 
       return await Product.findByIdAndUpdate(_id, { $inc: { quantity: decrement } }, { new: true });
     },
-    login: async (parent, { email, password }) => {
-      const user = await User.findOne({ email });
-
-      if (!user) {
-        throw new AuthenticationError('Incorrect credentials');
-      }
-
-      const correctPw = await user.isCorrectPassword(password);
-
-      if (!correctPw) {
-        throw new AuthenticationError('Incorrect credentials');
-      }
-
-      const token = signToken(user);
-
-      return { token, user };
-    }
+    
   }
 };
 
