@@ -3,8 +3,8 @@ import About from '../components/About';
 import Banner from '../components/Banner';
 import Login from '../components/Login';
 import Signup from '../components/Signup';
+import Dashboard from './Dashboard';
 import { useSelector } from 'react-redux'
-import Auth from '../utils/auth';
 
 
 function MainLanding() {
@@ -21,7 +21,11 @@ function MainLanding() {
             </div> 
         )
     } else {
-        return ( <div>TEstPAge</div> )
+        return ( 
+        <div>
+            <Dashboard />
+        </div> 
+        )
     }
 
 }
