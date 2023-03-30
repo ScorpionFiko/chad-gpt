@@ -21,13 +21,14 @@ function Signup(props) {
         lastName: formState.lastName,
       },
     });
-    const token = mutationResponse.data.addUser.token;
-    Auth.login(token);
-
     dispatch({
       type: LOAD_USER,
       currentUser: mutationResponse.data.addUser.user
     })
+    const token = mutationResponse.data.addUser.token;
+    Auth.login(token);
+
+
   };
 
 
