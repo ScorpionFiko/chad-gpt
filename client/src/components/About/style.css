@@ -1,4 +1,11 @@
 #about-body {
     width: 90%;
     margin: auto;
+    margin-bottom: 30px;
+}
+
+#about-background {
+    box-shadow: 5px 5px 3px dodgerblue;
+    border-radius: 10px;
+    background: linear-gradient(180deg, #FFC107, #fcecbb);
 }
