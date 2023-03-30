@@ -16,7 +16,8 @@
     "react-router-dom": "^5.1.2",
     "react-scripts": "3.4.1",
     "react-redux": "^8.0.5",
-    "redux-devtools-extension":"^2.13.9"
+    "redux-devtools-extension":"^2.13.9",
+    "openai": "3.2.1"
   },
 
   "scripts": {

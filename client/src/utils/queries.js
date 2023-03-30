@@ -47,7 +47,14 @@ export const QUERY_CATEGORIES = gql`
     }
   }
 `;
-
+export const QUERY_SETTINGS = gql`
+  query Setting($key: String) {
+    setting(key: $key) {
+      key
+      value
+    }
+  }
+`;
 export const QUERY_USER = gql`
   {
   user {
