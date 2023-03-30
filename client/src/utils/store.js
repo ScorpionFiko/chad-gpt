@@ -6,6 +6,7 @@ const composedEnhancers = composeWithDevTools();
 
 
 let preloadedState = {
+    currentUser: {},
     products: [],
     cart: [],
     cartOpen: false,
