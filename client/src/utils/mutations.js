@@ -34,7 +34,7 @@ export const LOGIN = gql`
   }
 `;
 
-export const ADD_ORDER = gql`
+export const SAVE_WORKOUT = gql`
   mutation saveWorkout($workoutName: String!, $routine: [InputWorkoutRoutine]) {
     saveWorkout(workoutName: $workoutName, routine: $routine) {
       _id
