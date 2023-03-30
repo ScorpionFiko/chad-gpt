@@ -9,18 +9,18 @@
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.5.0",
     "@testing-library/user-event": "^7.2.1",
+    "googleimg": "^3.0.2",
     "graphql": "^14.6.0",
     "jwt-decode": "^2.2.0",
+    "openai": "3.2.1",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-icons": "^4.8.0",
+    "react-redux": "^8.0.5",
     "react-router-dom": "^5.1.2",
     "react-scripts": "3.4.1",
-    "react-redux": "^8.0.5",
-    "redux-devtools-extension":"^2.13.9",
-    "openai": "3.2.1"
+    "redux-devtools-extension": "^2.13.9"
   },
-
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",

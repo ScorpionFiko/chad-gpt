@@ -23,6 +23,7 @@ import MainLanding from './pages/MainLanding';
 import Dashboard from './pages/Dashboard';
 import BuildWorkout from './pages/BuildWorkout';
 import Footer from './components/Footer';
+import GoogleImages from './pages/GoogleImages'
 
 
 const httpLink = createHttpLink({
@@ -61,7 +62,7 @@ function App() {
               <Route exact path='/' component={MainLanding} /> {/* This will eventually be our default route */}
               <Route exact path='/dashboard' component={Dashboard} /> {/* This will be contain navbar, accessed upon login */}
               <Route exact path='/buildWorkout' component={BuildWorkout} /> {/* This will be accessed through nav in dashboard */}
-              <Route component={NoMatch} />
+              <Route exact path='/googleImages' component={GoogleImages} /> {/* This will be <Route component={NoMatch} /> */}
             </Switch>
             <Footer />
 
