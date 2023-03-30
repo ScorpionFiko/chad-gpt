@@ -6,23 +6,55 @@ export const LOGIN = gql`
       token
       user {
         _id
+        firstName
+        lastName
+        email
+        rate
+        workouts {
+          _id
+          workoutName
+          dateCreated
+          routine {
+            _id
+            day
+            exercises {
+              _id
+              exerciseName
+              exerciseType
+              sets
+              reps
+              secondsRest
+              minutesDuration
+              intensity
+            }
+          }
+        }
       }
     }
   }
 `;
 
 export const ADD_ORDER = gql`
-  mutation addOrder($products: [ID]!) {
-    addOrder(products: $products) {
-      purchaseDate
-      products {
+  mutation saveWorkout($workoutName: String!, $routine: [InputWorkoutRoutine]) {
+    saveWorkout(workoutName: $workoutName, routine: $routine) {
+      _id
+      workouts {
         _id
-        name
-        description
-        price
-        quantity
-        category {
-          name
+        workoutName
+        dateCreated
+        routine {
+          _id
+          day
+          exercises {
+            _id
+            exerciseName
+            exerciseType
+            sets
+            reps
+            secondsRest
+            minutesDuration
+            intensity
+          }
         }
       }
     }
@@ -30,21 +62,34 @@ export const ADD_ORDER = gql`
 `;
 
 export const ADD_USER = gql`
-  mutation addUser(
-    $firstName: String!
-    $lastName: String!
-    $email: String!
-    $password: String!
-  ) {
-    addUser(
-      firstName: $firstName
-      lastName: $lastName
-      email: $email
-      password: $password
-    ) {
+  mutation addUser($firstName: String!, $lastName: String!, $email: String!, $password: String!) {
+    addUser(firstName: $firstName, lastName: $lastName, email: $email, password: $password) {
       token
       user {
         _id
+        firstName
+        lastName
+        email
+        rate
+        workouts {
+          _id
+          workoutName
+          dateCreated
+          routine {
+            _id
+            day
+            exercises {
+              _id
+              exerciseName
+              exerciseType
+              sets
+              reps
+              minutesDuration
+              secondsRest
+              intensity
+            }
+          }
+        }
       }
     }
   }

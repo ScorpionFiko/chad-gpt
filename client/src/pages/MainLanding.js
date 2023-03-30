@@ -5,12 +5,13 @@ import Login from '../components/Login';
 import Signup from '../components/Signup';
 
 
+
 function MainLanding() {
     return (
         <div>
             <Banner />
             <About />
-            <div>
+            <div className="flex-wrap" id="landing-input">
             <Login />
             <Signup />
             </div>

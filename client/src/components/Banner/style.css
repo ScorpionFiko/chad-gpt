@@ -1,0 +1,11 @@
+.banner-container {
+    display: flex;
+    margin: auto;
+    width: 40%;
+}
+
+@media screen and (max-width: 968px) {
+    .banner-container {
+        width: 75%;
+    }
+}
