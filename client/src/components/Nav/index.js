@@ -5,24 +5,29 @@ import { Link } from "react-router-dom";
 function Navigation() {
   if (Auth.loggedIn()) {
     return (
-      <ul>
-        <li>
-          <Link to="/workoutCard">
-            My Workouts{/* This will generate workoutcard components */}
-          </Link>
-        </li>
-        <li className="mx-1">
-          <Link to="/buildWorkout">
-            Build a Workout{/* This will link to buildworkout page */}
-          </Link>
-        </li>
-        <li className="mx-1">
-          {/* this is not using the Link component to logout or user and then refresh the application to the start */}
-          <a href="/" onClick={() => Auth.logout()}>
-            Logout
-          </a>
-        </li>
-      </ul>
+      <nav className="navbar navbar-expand-lg navbar-light bg-light">
+        <div className="navbar-brand px-3">Chad GPT</div>
+        <div id="navbarNav">
+          <ul className="navbar-nav px-2">
+            {" "}
+            <li className="nav-item active">
+              <Link className="nav-link" to="/dashboard">
+                My Dashboard
+              </Link>
+            </li>
+            <li className="nav-item active">
+              <Link className="nav-link" to="/buildWorkout">
+                Build a Workout
+              </Link>
+            </li>
+            <li className="nav-item">
+              <a className="nav-link" href="/" onClick={() => Auth.logout()}>
+                Logout
+              </a>
+            </li>
+          </ul>
+        </div>
+      </nav>
     );
   } else {
     return (
