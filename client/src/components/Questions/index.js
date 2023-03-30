@@ -1,15 +1,13 @@
 import React from "react";
 import { useState } from "react";
-
-
+import { useMutation } from '@apollo/client';
+import { SAVE_WORKOUT } from '../../utils/mutations';
 import { OpenAIApi, Configuration } from "openai";
 
 import { config } from "dotenv";
 config(); // load .env file
 
 const apiKey = process.env.REACT_APP_API_KEY;
-console.log(apiKey);
-
 
 const openai = new OpenAIApi(
   new Configuration({
@@ -32,7 +30,8 @@ function ExerciseRoutineGenerator() {
 
   // State to hold the exercise routine
   const [exerciseRoutine, setExerciseRoutine] = useState([]);
-
+  
+ 
    // function to handle the change in the input fields
   const handleFitnessInfoChange = (event) => {
     setFitnessInfo({ ...fitnessInfo, [event.target.name]: event.target.value }); 
@@ -79,16 +78,24 @@ console.log(fitnessInfo);
     `;
     console.log(aiPrompt);
 
-async function callApi() {
-    const res = await openai.createChatCompletion({
+    async function callApi() {
+      const res = await openai.createChatCompletion({
         model: "gpt-3.5-turbo",
         messages: [{ role: "user", content: aiPrompt }],
-        max_tokens: 200,
-    });
-    console.log(res.data.choices[0].message.content);
-
-    setExerciseRoutine(JSON.parse(res.data.choices[0].text)); 
-}
+        max_tokens: 2000,
+      });
+    
+      const response = res.data.choices[0].message.content;
+      console.log(response);
+    
+      try {
+        const parsedResponse = JSON.parse(response);
+        setExerciseRoutine(parsedResponse.exerciseRoutine);
+      } catch (error) {
+        console.error("Error parsing response:", error);
+      }
+    }
+    
     await callApi();
 
   };
@@ -175,8 +182,6 @@ async function callApi() {
           </label>
           <button type="submit">Generate Exercise Routine</button>
         </form>
-{/* this will render the exercise routine in json format. null will remove the quotes around the keys and 2 will add 2 spaces to the indentation */}
-        <pre>{JSON.stringify(exerciseRoutine, null, 2)}</pre> 
       </div>
 
     )
