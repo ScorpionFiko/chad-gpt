@@ -1,7 +1,7 @@
 import React from "react";
 import DashMessage from "../components/DashMessage";
 import Navigation from "../components/Nav";
-import Workouts from "../components/MyWorkouts";
+import Workouts from "../components/Workouts";
 
 const Dashboard = () => {
   
@@ -12,7 +12,7 @@ const Dashboard = () => {
       {/* Personalized welcome message with user info incorporated */}
       <DashMessage />
       {/* Mapped component holding clickable workout links */}
-      <Workouts />
+      <Workouts/>
     </div>
   );
 };
