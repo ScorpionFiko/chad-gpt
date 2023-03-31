@@ -86,41 +86,60 @@ console.log(fitnessInfo);
         messages: [{ role: "user", content: aiPrompt }],
         max_tokens: 2000,
       });
-    
+
       const response = res.data.choices[0].message.content;
-      console.log(response);
 
+      // Sanitize the response to remove unexpected tokens and fix JSON formatting issues
+      const sanitizedResponse = response
+        .replace(/,\s*]/g, "]")
+        .replace(/,\s*}/g, "}");
 
-  // Sanitize the response to remove unexpected tokens and fix JSON formatting issues
-  const sanitizedResponse = response
-    .replace(/,\s*]/g, "]")
-    .replace(/,\s*}/g, "}");
-
-  try {
-    const parsedResponse = JSON.parse(sanitizedResponse);
-    setExerciseRoutine(parsedResponse.exerciseRoutine);
-  } catch (error) {
-    console.error("Error parsing response:", error);
-  }
-}
-    
-    await callApi();
-
-    // Conditionally save the workout if the exercise routine is not empty
-    if (exerciseRoutine.length > 0) {
       try {
-        await saveWorkout({
-          variables: {
-            exerciseRoutine,
-          },
-        });
-        console.log("Exercise routine saved successfully!");
+        const parsedResponse = JSON.parse(sanitizedResponse);
+        setExerciseRoutine(parsedResponse.exerciseRoutine);
+        console.log("Exercise routine:", exerciseRoutine);
+
+        // Save the workout if the parsed response is not empty
+        if (parsedResponse.exerciseRoutine.length > 0) {
+          try {
+            await saveWorkout({
+              variables: {
+                workoutName: "Generated Exercise Routine",
+                routine: parsedResponse.exerciseRoutine,
+              },
+            });
+            console.log("Exercise routine saved successfully!");
+          } catch (error) {
+            console.error("Error saving exercise routine:", error);
+          }
+        }
+
       } catch (error) {
-        console.error("Error saving exercise routine:", error);
+        console.error("Error parsing response:", error);
       }
     }
 
+    await callApi();
   };
+
+
+
+    // Conditionally save the workout if the exercise routine is not empty
+    // if (exerciseRoutine.length > 0) {
+    //   try {
+    //     await saveWorkout({
+    //       variables: {
+    //         workoutName: "Generated Exercise Routine", // Change this
+    //         routine: exerciseRoutine,
+    //       },
+    //     });
+    //     console.log("Exercise routine saved successfully!");
+    //   } catch (error) {
+    //     console.error("Error saving exercise routine:", error);
+    //   }
+    // }
+
+  
 
   return (
       <div>
