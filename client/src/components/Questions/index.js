@@ -142,88 +142,114 @@ console.log(fitnessInfo);
   
 
   return (
-      <div>
-        <form onSubmit={handleSubmit}>
-          <label>
-            Age:
-            <input
-              type="number"
-              name="age"
-              value={fitnessInfo.age}
-              onChange={handleFitnessInfoChange}
-            />
-          </label>
-          <label>
-            Height (feet and inches):
-            <input
-              type="text"
-              name="height"
-              value={fitnessInfo.height}
-              onChange={handleFitnessInfoChange}
-            />
-          </label>
-          <label>
-            Weight (pounds):
-            <input
-              type="number"
-              name="weight"
-              value={fitnessInfo.weight}
-              onChange={handleFitnessInfoChange}
-            />
-          </label>
-          <label>
-            Gender:
-            <select
-              name="gender"
-              value={fitnessInfo.gender}
-              onChange={handleFitnessInfoChange}
-            >
-              <option value="male">Male</option>
-              <option value="female">Female</option>
-            </select>
-          </label>
-          <label>
-            Exercise frequency (days per week):
-            <input
-              type="number"
-              name="exerciseFrequency"
-              value={fitnessInfo.exerciseFrequency}
-              onChange={handleFitnessInfoChange}
-            />
-          </label>
-          <label>
-            Equipment:
-            <select
-              name="equipment"
-              value={fitnessInfo.equipment}
-              onChange={handleFitnessInfoChange}
-            >
-              <option value="Loose weights">Loose weights</option>
-              <option value="Bicycle">Bicycle</option>
-              <option value="Resistance bands">Resistance bands</option>
-              <option value="Bodyweight">Bodyweight</option>
-              <option value="A full gym">A full gym</option>
-            </select>
-          </label>
-          <label>
-            Fitness goal:
-            <select
-              name="fitnessGoal"
-              value={fitnessInfo.fitnessGoal}
-              onChange={handleFitnessInfoChange}
-            >
-              <option value="Lose weight">Lose weight</option>
-              <option value="Build muscle">Build muscle</option>
-              <option value="Improve cardiovascular health">
-                Improve cardiovascular health
-              </option>
-              <option value="Increase flexibility">Increase flexibility</option>
-              <option value="Run a marathon">Run a marathon</option>
-            </select>
-          </label>
-          <button type="submit">Generate Exercise Routine</button>
-        </form>
+    <div className="shadow-lg p-3 mb-5 bg-white rounded" style={{ width: "50%", margin: "50px auto" }}>
+      <h2 className="text-center">Create Your Workout</h2>
+    <form onSubmit={handleSubmit}>
+      <div className="form-group">
+        <label>
+          Age:
+          <input
+            className="form-control"
+            type="number"
+            name="age"
+            value={fitnessInfo.age}
+            onChange={handleFitnessInfoChange}
+          />
+        </label>
       </div>
+      <div className="form-group">
+        <label>
+          Height (feet and inches):
+          <input
+            className="form-control"
+            type="text"
+            name="height"
+            value={fitnessInfo.height}
+            onChange={handleFitnessInfoChange}
+          />
+        </label>
+      </div>
+      <div className="form-group">
+        <label>
+          Weight (pounds):
+          <input
+            className="form-control"
+            type="number"
+            name="weight"
+            value={fitnessInfo.weight}
+            onChange={handleFitnessInfoChange}
+          />
+        </label>
+      </div>
+      <div className="form-group">
+        <label>
+          Gender:
+          <select
+            className="form-control"
+            name="gender"
+            value={fitnessInfo.gender}
+            onChange={handleFitnessInfoChange}
+          >
+            <option value="male">Male</option>
+            <option value="female">Female</option>
+          </select>
+        </label>
+      </div>
+      <div className="form-group">
+        <label>
+          Exercise frequency (days per week):
+          <input
+            className="form-control"
+            type="number"
+            name="exerciseFrequency"
+            value={fitnessInfo.exerciseFrequency}
+            onChange={handleFitnessInfoChange}
+          />
+        </label>
+      </div>
+      <div className="form-group">
+        <label>
+          Equipment:
+          <select
+            className="form-control"
+            name="equipment"
+            value={fitnessInfo.equipment}
+            onChange={handleFitnessInfoChange}
+          >
+            <option value="Loose weights">Loose weights</option>
+            <option value="Bicycle">Bicycle</option>
+            <option value="Resistance bands">Resistance bands</option>
+            <option value="Bodyweight">Bodyweight</option>
+            <option value="A full gym">A full gym</option>
+          </select>
+        </label>
+      </div>
+      <div className="form-group">
+        <label>
+          Fitness goal:
+          <select
+            className="form-control"
+            name="fitnessGoal"
+            value={fitnessInfo.fitnessGoal}
+            onChange={handleFitnessInfoChange}
+          >
+            <option value="Lose weight">Lose weight</option>
+            <option value="Build muscle">Build muscle</option>
+            <option value="Improve cardiovascular health">
+              Improve cardiovascular health
+              </option>
+          <option value="Increase flexibility">Increase flexibility</option>
+          <option value="Run a marathon">Run a marathon</option>
+        </select>
+      </label>
+    </div>
+    <div className="flex-row flex-end">
+      <button type="submit" className="btn btn-primary">Generate Exercise Routine</button>
+    </div>
+  </form>
+</div>
+
+  
 
     )
   
