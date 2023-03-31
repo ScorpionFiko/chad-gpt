@@ -1,26 +1,6 @@
 const { gql } = require('apollo-server-express');
 
 const typeDefs = gql`
-  type Category {
-    _id: ID
-    name: String
-  }
-
-  type Product {
-    _id: ID
-    name: String
-    description: String
-    image: String
-    quantity: Int
-    price: Float
-    category: Category
-  }
-
-  type Order {
-    _id: ID
-    purchaseDate: String
-    products: [Product]
-  }
 
   type MyProgressExercise {
     exerciseId: ID
@@ -44,10 +24,10 @@ const typeDefs = gql`
     _id: ID
     exerciseName: String
     exerciseType: String
-    sets: Int
-    reps: Int
-    secondsRest: Int
-    minutesDuration: Float
+    sets: String
+    reps: String
+    secondsRest: String
+    minutesDuration: String
     intensity: String
   }
 
@@ -61,10 +41,10 @@ const typeDefs = gql`
   input InputWorkoutExercise {
     exerciseName: String
     exerciseType: String
-    sets: Int
-    reps: Int
-    secondsRest: Int
-    minutesDuration: Float
+    sets: String
+    reps: String
+    secondsRest: String
+    minutesDuration: String
     intensity: String
   }
 
@@ -104,10 +84,6 @@ const typeDefs = gql`
     workouts: [Workouts]
   }
 
-  type Checkout {
-    session: ID
-  }
-
   type Auth {
     token: ID
     user: User
@@ -119,12 +95,6 @@ const typeDefs = gql`
   }
 
   type Query {
-    categories: [Category]
-    products(category: ID, name: String): [Product]
-    product(_id: ID!): Product
-    order(_id: ID!): Order
-    checkout(products: [ID]!): Checkout
-    
     user: User
     workoutQuestions: [WorkoutQuestions]
     myProgressDetails: [MyProgressDetails]
@@ -137,11 +107,6 @@ const typeDefs = gql`
     login(email: String!, password: String!): Auth
     saveWorkout(workoutName: String!, routine: [InputWorkoutRoutine]): User
 
-
-    addOrder(products: [ID]!): Order
-    updateUser(firstName: String, lastName: String, email: String, password: String): User
-    updateProduct(_id: ID!, quantity: Int!): Product
-    
   }
 `;
 
