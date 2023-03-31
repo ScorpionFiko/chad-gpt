@@ -1,5 +1,5 @@
-# chad-gpt
-University of Toronto - Project 03 - Team 09 - chad-GPT
+# Chad-GPT: Your one stop for all your fitness needs
+University of Toronto - Project 03 - Team 09 - Chad-GPT
 
 ## Description
 
@@ -43,10 +43,12 @@ Below is the image of the Chad-GPT when user has selected an exercise from the r
 
 ## Installation
 
+You can use the app by going to https://chadgpt-fitness.herokuapp.com/
+
+
 To install it on your device: 
 - visit https://chadgpt-fitness.herokuapp.com/
 - click on the install button that appears on the right side of the web address bar
-
 
 back to [Table of Contents](#table-of-contents)
 
@@ -69,28 +71,27 @@ According to the official documentation at https://redux.js.org/ Redux:
 
 ### Google Custom Search Engine:
 
+The Custom Search Engine, also known as Programmable Search Engine, is a feature that goolge provides where a user can modify the Google search engine to only look for specific types in information. For this specific application, the search engine has been programmed to only search images from workoutlabs.com to retrieve watermarked images of the exercises.
 
-The Custom Search Engine, also known as Programmable Search Engine, is a feature that goolge provides where a user can modify the Google search engine to only look for specific types in information.
+
+### OpenAI
+
+
 
 back to [Table of Contents](#table-of-contents)
 
 ## Usage
 
 To access application
-1. Go to https://stefans-ecommerce-platform.herokuapp.com/ to access the application
-2. Before logging in/setting up an account
-    1. Navigate through the products and categories
-    2. Add products to your cart
-    3. Click on the cart icon at the top right - you will see the message that you need to be logged in before checking out
-2. Log in or create an account (top navigation menu)
-    1. Click on the cart icon at the top right - you will see the checkout button
-    2. Click on the checkout button, see the spinner, and you will be redirected to Stripe test
-    3. Use 
-        1. credit card: 4242 4242 4242 4242 
-        2. expiry: any date after today's date
-        3. any 3 digit CVV
-    4. Place the order - once processed, you will be redirected back to the site
-    5. You can view your past orders in the order history section
+1. Go to https://chadgpt-fitness.herokuapp.com/ to access the application
+2. log in or set up an account
+3. To create a new workout, click on the Build workout menu option
+    1. Enter informatoin in all inputs
+    2. Click on the generate button and wait for the application to update. Depending on the workout type, it may take up to two minutes to fully get the information from OpenAI
+4. The page should refresh and you should see the work out as a button
+    1. click on the workout
+    2. click on a day of the exercise routing
+    3. click through each of the exercises to view the details about how to do it and the necessary sets and reps
 
 
 back to [Table of Contents](#table-of-contents)
@@ -126,19 +127,18 @@ back to [Table of Contents](#table-of-contents)
 ## Future Development
 
 Here are some of the items to be considered for future development.
-1. Add a "store owner" section where the owner can 
-    1. add/update/delete products from the catalog
-    2. view new orders
-    3. print shipping labels
-    4. print reports
-    5. set up sales tax calculator to add taxes on checkout
+1. Add 'hire a trainer' option where the user can select between a small listing of trainers and also pay for the services
+2. 
 
 
 back to [Table of Contents](#table-of-contents)
 
 
 ## Contact
-Stefan Marinov
-stefan_marinov@rogers.com
+Stefan Marinov: [GitHub](https://github.com/ScorpionFiko) | [LinkedIn](https://www.linkedin.com/in/stefan-marinov-csm-020006267/) | [E-mail](mailto://stefan_marinov@rogers.com)
+
+Mario Repas: [GitHub](https://github.com/Tegrty) | [LinkedIn](https://www.linkedin.com/in/mario-repas-46b85b25a/) | [E-mail](mailto://)
+
+Kirk Hagglund: [GitHub](https://github.com/KirkHagglund) | [LinkedIn](hhttps://www.linkedin.com/in/kirk-hagglund-20b24726b/) | [E-mail](mailto://)
 
 back to [Table of Contents](#table-of-contents)
