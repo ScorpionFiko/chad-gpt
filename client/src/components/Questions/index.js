@@ -1,6 +1,6 @@
 import React from "react";
 import { useState } from "react";
-import { useMutation } from '@apollo/client';
+import { useMutation } from "@apollo/client";
 import { SAVE_WORKOUT } from '../../utils/mutations';
 import { OpenAIApi, Configuration } from "openai";
 
@@ -31,6 +31,8 @@ function ExerciseRoutineGenerator() {
   // State to hold the exercise routine
   const [exerciseRoutine, setExerciseRoutine] = useState([]);
   
+  // Mutation to save the workout
+  const [saveWorkout] = useMutation(SAVE_WORKOUT);
  
    // function to handle the change in the input fields
   const handleFitnessInfoChange = (event) => {
@@ -87,16 +89,36 @@ console.log(fitnessInfo);
     
       const response = res.data.choices[0].message.content;
       console.log(response);
-    
-      try {
-        const parsedResponse = JSON.parse(response);
-        setExerciseRoutine(parsedResponse.exerciseRoutine);
-      } catch (error) {
-        console.error("Error parsing response:", error);
-      }
-    }
+
+
+  // Sanitize the response to remove unexpected tokens and fix JSON formatting issues
+  const sanitizedResponse = response
+    .replace(/,\s*]/g, "]")
+    .replace(/,\s*}/g, "}");
+
+  try {
+    const parsedResponse = JSON.parse(sanitizedResponse);
+    setExerciseRoutine(parsedResponse.exerciseRoutine);
+  } catch (error) {
+    console.error("Error parsing response:", error);
+  }
+}
     
     await callApi();
+
+    // Conditionally save the workout if the exercise routine is not empty
+    if (exerciseRoutine.length > 0) {
+      try {
+        await saveWorkout({
+          variables: {
+            exerciseRoutine,
+          },
+        });
+        console.log("Exercise routine saved successfully!");
+      } catch (error) {
+        console.error("Error saving exercise routine:", error);
+      }
+    }
 
   };
 

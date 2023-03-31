@@ -86,6 +86,7 @@ export const reducer = (state, action) => {
         ...state,
         currentUser: action.currentUser
       }
+      
 
     default:
       return state;
