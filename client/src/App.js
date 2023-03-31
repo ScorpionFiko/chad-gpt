@@ -7,20 +7,11 @@ import {
   createHttpLink,
 } from '@apollo/client';
 import { setContext } from '@apollo/client/link/context';
-
-//import Home from './pages/Home';
-//import Detail from './pages/Detail';
 import NoMatch from './pages/NoMatch';
-//import Login from './pages/Login';
-//import Signup from './pages/Signup';
-//import Nav from './components/Nav';
-// import { StoreProvider } from './utils/GlobalState';
-//import Success from './pages/Success';
-//import OrderHistory from './pages/OrderHistory';
 import { Provider } from 'react-redux';
 import store from './utils/store';
 import MainLanding from './pages/MainLanding';
-import Dashboard from './pages/Dashboard';
+//import Dashboard from './pages/Dashboard';
 import BuildWorkout from './pages/BuildWorkout';
 import Footer from './components/Footer';
 import GoogleImages from './pages/GoogleImages'
@@ -47,12 +38,14 @@ const client = new ApolloClient({
 
 function App() {
   return (
-    <ApolloProvider client={client}>
-      <Provider store={store}>
+    <Provider store={store}>
+      
+    <ApolloProvider  client={client}>
+   
         <Router>
           <div>
-            {/*<Nav />*/}
             <Switch>
+
               {/*<Route exact path="/" component={Home} />*/}
               {/*<Route exact path="/login" component={Login} />*/}
               {/*<Route exact path="/signup" component={Signup} />*/}
@@ -63,13 +56,19 @@ function App() {
               <Route exact path='/dashboard' component={Dashboard} /> {/* This will be contain navbar, accessed upon login */}
               <Route exact path='/buildWorkout' component={BuildWorkout} /> {/* This will be accessed through nav in dashboard */}
               <Route exact path='/googleImages' component={GoogleImages} /> {/* This will be <Route component={NoMatch} /> */}
+
+              <Route exact path='/' component={MainLanding} /> 
+              <Route exact path='/buildWorkout' component={BuildWorkout} />
+              <Route component={NoMatch} />
+
             </Switch>
             <Footer />
 
           </div>
         </Router>
-      </Provider>
+
     </ApolloProvider>
+    </Provider>
   );
 }
 

@@ -3,10 +3,13 @@ import React, { useState } from "react";
 import { useMutation } from "@apollo/client";
 import Auth from "../../utils/auth";
 import { ADD_USER } from "../../utils/mutations";
+import { useDispatch } from 'react-redux';
+import { LOAD_USER } from "../../utils/actions";
 
 function Signup(props) {
   const [formState, setFormState] = useState({ email: "", password: "" });
   const [addUser] = useMutation(ADD_USER);
+  const dispatch = useDispatch();
 
   const handleFormSubmit = async (event) => {
     event.preventDefault();
@@ -18,9 +21,16 @@ function Signup(props) {
         lastName: formState.lastName,
       },
     });
+    dispatch({
+      type: LOAD_USER,
+      currentUser: mutationResponse.data.addUser.user
+    })
     const token = mutationResponse.data.addUser.token;
     Auth.login(token);
+
+
   };
+
 
   const handleChange = (event) => {
     const { name, value } = event.target;
