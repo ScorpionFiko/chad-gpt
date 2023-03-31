@@ -137,8 +137,8 @@ back to [Table of Contents](#table-of-contents)
 ## Contact
 Stefan Marinov: [GitHub](https://github.com/ScorpionFiko) | [LinkedIn](https://www.linkedin.com/in/stefan-marinov-csm-020006267/) | [E-mail](mailto://stefan_marinov@rogers.com)
 
-Mario Repas: [GitHub](https://github.com/Tegrty) | [LinkedIn](https://www.linkedin.com/in/mario-repas-46b85b25a/) | [E-mail](mailto://)
+Mario Repas: [GitHub](https://github.com/Tegrty) | [LinkedIn](https://www.linkedin.com/in/mario-repas-46b85b25a/) | [E-mail](mailto://dev.repas@gmail.com)
 
-Kirk Hagglund: [GitHub](https://github.com/KirkHagglund) | [LinkedIn](hhttps://www.linkedin.com/in/kirk-hagglund-20b24726b/) | [E-mail](mailto://)
+Kirk Hagglund: [GitHub](https://github.com/KirkHagglund) | [LinkedIn](https://www.linkedin.com/in/kirk-hagglund-20b24726b/) | [E-mail](mailto://kirkhagglund@gmail.com)
 
 back to [Table of Contents](#table-of-contents)
