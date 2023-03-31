@@ -253,6 +253,7 @@ console.log(fitnessInfo);
                     value={fitnessInfo.equipment}
                     onChange={handleFitnessInfoChange}
                   >
+                    <option value="">Select</option>
                     <option value="Loose weights">Loose weights</option>
                     <option value="Bicycle">Bicycle</option>
                     <option value="Resistance bands">Resistance bands</option>
@@ -270,6 +271,7 @@ console.log(fitnessInfo);
                     value={fitnessInfo.fitnessGoal}
                     onChange={handleFitnessInfoChange}
                   >
+                    <option value="">Select</option>
                     <option value="Lose weight">Lose weight</option>
                     <option value="Build muscle">Build muscle</option>
                     <option value="Improve cardiovascular health">
