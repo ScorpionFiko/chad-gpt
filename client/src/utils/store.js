@@ -7,11 +7,7 @@ const composedEnhancers = composeWithDevTools();
 
 let preloadedState = {
     currentUser: {},
-    products: [],
-    cart: [],
-    cartOpen: false,
-    categories: [],
-    currentCategory: '',};
+};
 
   const store = createStore(reducer, preloadedState, composedEnhancers);
 

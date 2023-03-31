@@ -1,11 +1,10 @@
 .footer {
-    position: relative;
+    position: absolute;
     bottom: 10px;
     width: 100%;
     height: auto;
     display: flex;
     justify-content: center;
-    padding-top: 100px;
   }
   
   .footer-link {
