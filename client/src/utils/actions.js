@@ -10,3 +10,12 @@ export const LOAD_USER = "LOAD_USER";
 
 export const UPDATE_CATEGORIES = "UPDATE_CATEGORIES";
 export const UPDATE_CURRENT_CATEGORY = "UPDATE_CURRENT_CATEGORY";
+// export const SET_EXERCISE_ROUTINE = "SET_EXERCISE_ROUTINE";
+
+
+// export function setExerciseRoutine(exerciseRoutine) {
+//     return {
+//       type: SET_EXERCISE_ROUTINE,
+//       payload: exerciseRoutine,
+//     };
+//   }
