@@ -53,7 +53,7 @@ function App() {
               {/*<Route exact path="/orderHistory" component={OrderHistory} />*/}
               {/*<Route exact path="/products/:id" component={Detail} />*/}
               <Route exact path='/' component={MainLanding} /> {/* This will eventually be our default route */}
-              <Route exact path='/dashboard' component={Dashboard} /> {/* This will be contain navbar, accessed upon login */}
+              {/* <Route exact path='/dashboard' component={Dashboard} /> This will be contain navbar, accessed upon login */}
               <Route exact path='/buildWorkout' component={BuildWorkout} /> {/* This will be accessed through nav in dashboard */}
               <Route exact path='/googleImages' component={GoogleImages} /> {/* This will be <Route component={NoMatch} /> */}
 
