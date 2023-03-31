@@ -1,0 +1,66 @@
+[
+    {
+        "day": "Monday",
+        "exercises": [
+            {
+                "exerciseName": "Barbell Squat",
+                "exerciseType": "Strength",
+                "sets": 4,
+                "reps": 6,
+                "secondsRest": 120,
+                "minutesDuration": 60,
+                "intensity": "High"
+            },
+            {
+                "exerciseName": "Dumbbell Bench Press",
+                "exerciseType": "Strength",
+                "sets": 4,
+                "reps": 6,
+                "secondsRest": 120,
+                "minutesDuration": 60,
+                "intensity": "High"
+            },
+            {
+                "exerciseName": "Pull-Ups",
+                "exerciseType": "Strength",
+                "sets": 4,
+                "reps": 6,
+                "secondsRest": 120,
+                "minutesDuration": 60,
+                "intensity": "High"
+            }
+        ]
+    },
+    {
+        "day": "Thursday",
+        "exercises": [
+            {
+                "exerciseName": "Deadlifts",
+                "exerciseType": "Strength",
+                "sets": 4,
+                "reps": 6,
+                "secondsRest": 120,
+                "minutesDuration": 60,
+                "intensity": "High"
+            },
+            {
+                "exerciseName": "Overhead Press",
+                "exerciseType": "Strength",
+                "sets": 4,
+                "reps": 6,
+                "secondsRest": 120,
+                "minutesDuration": 60,
+                "intensity": "High"
+            },
+            {
+                "exerciseName": "Dumbbell Row",
+                "exerciseType": "Strength",
+                "sets": 4,
+                "reps": 6,
+                "secondsRest": 120,
+                "minutesDuration": 60,
+                "intensity": "High"
+            }
+        ]
+    }
+]

@@ -15,22 +15,22 @@ const workoutExerciseSchema = new Schema({
     trim: true
   },
   sets: {
-    type: Number,
+    type: String,
     required: false,
     default: 0
   },
   reps: {
-    type: Number,
+    type: String,
     required: false,
     default: 0
   },
   secondsRest: {
-    type: Number,
+    type: String,
     required: false,
     default: 0
   },
   minutesDuration: {
-    type: Number,
+    type: String,
     required: false,
     default: 0
   },

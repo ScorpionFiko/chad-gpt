@@ -226,6 +226,7 @@ console.log(fitnessInfo);
                     value={fitnessInfo.gender}
                     onChange={handleFitnessInfoChange}
                   >
+                    <option value="">Select</option>
                     <option value="male">Male</option>
                     <option value="female">Female</option>
                   </select>
