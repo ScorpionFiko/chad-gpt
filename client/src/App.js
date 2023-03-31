@@ -14,6 +14,7 @@ import MainLanding from './pages/MainLanding';
 //import Dashboard from './pages/Dashboard';
 import BuildWorkout from './pages/BuildWorkout';
 import Footer from './components/Footer';
+import GoogleImages from './pages/GoogleImages'
 
 
 const httpLink = createHttpLink({
@@ -44,9 +45,22 @@ function App() {
         <Router>
           <div>
             <Switch>
+
+              {/*<Route exact path="/" component={Home} />*/}
+              {/*<Route exact path="/login" component={Login} />*/}
+              {/*<Route exact path="/signup" component={Signup} />*/}
+              {/*<Route exact path="/success" component={Success} />*/}
+              {/*<Route exact path="/orderHistory" component={OrderHistory} />*/}
+              {/*<Route exact path="/products/:id" component={Detail} />*/}
+              <Route exact path='/' component={MainLanding} /> {/* This will eventually be our default route */}
+              <Route exact path='/dashboard' component={Dashboard} /> {/* This will be contain navbar, accessed upon login */}
+              <Route exact path='/buildWorkout' component={BuildWorkout} /> {/* This will be accessed through nav in dashboard */}
+              <Route exact path='/googleImages' component={GoogleImages} /> {/* This will be <Route component={NoMatch} /> */}
+
               <Route exact path='/' component={MainLanding} /> 
               <Route exact path='/buildWorkout' component={BuildWorkout} />
               <Route component={NoMatch} />
+
             </Switch>
             <Footer />
 
