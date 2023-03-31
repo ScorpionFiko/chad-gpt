@@ -5,101 +5,32 @@ const stripe = require('stripe')('sk_test_4eC39HqLyjWDarjtT1zdp7dc');
 
 const resolvers = {
   Query: {
-    categories: async () => {
-      return await Category.find();
-    },
-    products: async (parent, { category, name }) => {
-      const params = {};
-
-      if (category) {
-        params.category = category;
-      }
-
-      if (name) {
-        params.name = {
-          $regex: name
-        };
-      }
-
-      return await Product.find(params).populate('category');
-    },
-    product: async (parent, { _id }) => {
-      return await Product.findById(_id).populate('category');
-    },
     user: async (parent, args, context) => {
       if (context.user) {
         const user = await User.findById(context.user._id)
-        .populate("workouts");
+          .populate("workouts");
         return user;
       }
 
       throw new AuthenticationError('Not logged in');
     },
-    order: async (parent, { _id }, context) => {
-      if (context.user) {
-        const user = await User.findById(context.user._id).populate({
-          path: 'orders.products',
-          populate: 'category'
-        });
-
-        return user.orders.id(_id);
-      }
-
-      throw new AuthenticationError('Not logged in');
+    workoutQuestions: async () => {
+      return await WorkoutQuestions.find();
     },
-workoutQuestions: async () => {
-  return await WorkoutQuestions.find();
-},
-settings: async () => {
-  return await Settings.find();
-},
-setting: async (parent, {key}, context) => {
-  if (context.user) {
-    return await Settings.findOne({key: key});
-  }
-  throw new AuthenticationError('Not logged in');
-
-},
-myProgressDetails: async () => {
-  return await MyProgressDetails.find().populate('exercises');
-
-},
-    checkout: async (parent, args, context) => {
-      const url = new URL(context.headers.referer).origin;
-      const order = new Order({ products: args.products });
-      const line_items = [];
-
-      const { products } = await order.populate('products').execPopulate();
-
-      for (let i = 0; i < products.length; i++) {
-        const product = await stripe.products.create({
-          name: products[i].name,
-          description: products[i].description,
-          images: [`${url}/images/${products[i].image}`]
-        });
-
-        const price = await stripe.prices.create({
-          product: product.id,
-          unit_amount: products[i].price * 100,
-          currency: 'usd',
-        });
-
-        line_items.push({
-          price: price.id,
-          quantity: 1
-        });
+    settings: async () => {
+      return await Settings.find();
+    },
+    setting: async (parent, { key }, context) => {
+      if (context.user) {
+        return await Settings.findOne({ key: key });
       }
+      throw new AuthenticationError('Not logged in');
 
-      const session = await stripe.checkout.sessions.create({
-        payment_method_types: ['card'],
-        line_items,
-        mode: 'payment',
-        success_url: `${url}/success?session_id={CHECKOUT_SESSION_ID}`,
-        cancel_url: `${url}/`
-      });
+    },
+    myProgressDetails: async () => {
+      return await MyProgressDetails.find().populate('exercises');
 
-      return { session: session.id };
-    }
+    },
   },
   Mutation: {
     addUser: async (parent, args) => {
@@ -125,45 +56,16 @@ myProgressDetails: async () => {
 
       return { token, user };
     },
-    saveWorkout: async (parent, { workoutName, routine }, context) => {     
+    saveWorkout: async (parent, { workoutName, routine }, context) => {
       if (context.user) {
-        const workout = await Workouts.create({workoutName, routine});
-        const test = await User.findByIdAndUpdate(context.user._id, { $addToSet: { workouts: {_id: workout._id} } }, {new:true}).populate('workouts');
+        const workout = await Workouts.create({ workoutName, routine });
+        const test = await User.findByIdAndUpdate(context.user._id, { $addToSet: { workouts: { _id: workout._id } } }, { new: true }).populate('workouts');
 
         return test;
       }
       throw new AuthenticationError('Not logged in');
     },
 
-
-
-
-
-    addOrder: async (parent, { products }, context) => {
-      console.log(context);
-      if (context.user) {
-        const order = new Order({ products });
-
-        await User.findByIdAndUpdate(context.user._id, { $push: { orders: order } });
-
-        return order;
-      }
-
-      throw new AuthenticationError('Not logged in');
-    },
-    updateUser: async (parent, args, context) => {
-      if (context.user) {
-        return await User.findByIdAndUpdate(context.user._id, args, { new: true });
-      }
-
-      throw new AuthenticationError('Not logged in');
-    },
-    updateProduct: async (parent, { _id, quantity }) => {
-      const decrement = Math.abs(quantity) * -1;
-
-      return await Product.findByIdAndUpdate(_id, { $inc: { quantity: decrement } }, { new: true });
-    },
-    
   }
 };
 
