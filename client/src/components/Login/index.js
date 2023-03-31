@@ -2,10 +2,13 @@ import React, { useState } from "react";
 import { useMutation } from "@apollo/client";
 import { LOGIN } from "../../utils/mutations";
 import Auth from "../../utils/auth";
+import {useDispatch} from "react-redux"
+import { LOAD_USER } from "../../utils/actions";
 
 function Login(props) {
   const [formState, setFormState] = useState({ email: "", password: "" });
   const [login, { error }] = useMutation(LOGIN);
+  const dispatch = useDispatch();
 
   const handleFormSubmit = async (event) => {
     event.preventDefault();
@@ -13,6 +16,10 @@ function Login(props) {
       const mutationResponse = await login({
         variables: { email: formState.email, password: formState.password },
       });
+      dispatch({
+        type: LOAD_USER,
+        currentUser: mutationResponse.data.login.user
+      })
       const token = mutationResponse.data.login.token;
       Auth.login(token);
     } catch (e) {
