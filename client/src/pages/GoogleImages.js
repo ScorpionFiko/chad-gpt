@@ -10,9 +10,9 @@ const Home = () => {
     event.preventDefault();
     try {
       const results = await searchGoogleImages(event.target.value);
-      const images = await results.json();
-      console.log(images.items[0].link)
-      setWOImages(images.items[0].link);
+      const images = results.data;
+      console.log(images[0].link)
+      setWOImages(images[0].link);
       console.log(woImages)
     } catch (err) {
       console.log(err)
