@@ -5,7 +5,8 @@ import { useMutation } from "@apollo/client";
 import { SAVE_WORKOUT } from '../../utils/mutations';
 import { OpenAIApi, Configuration } from "openai";
 import Loading from "../Loading/index";
-
+import { UPDATE_USER } from "../../utils/actions";
+import { useDispatch } from 'react-redux'
 
 import { config } from "dotenv";
 config(); // load .env file
@@ -21,6 +22,7 @@ const openai = new OpenAIApi(
 
 // State to hold user input
 function ExerciseRoutineGenerator() { 
+  const dispatch = useDispatch();
   const [fitnessInfo, setFitnessInfo] = useState({
     age: "",
     height: "",
@@ -107,23 +109,28 @@ console.log(fitnessInfo);
         .replace(/,\s*}/g, "}");
 
       try {
+        const stringedResponse = JSON.parse(JSON.stringify(JSON.parse(sanitizedResponse), (k, v) => v && typeof v === 'object' ? v : '' + v))
         const parsedResponse = JSON.parse(sanitizedResponse);
-        setExerciseRoutine(parsedResponse.exerciseRoutine);
+        setExerciseRoutine(stringedResponse.exerciseRoutine);
                 // Console log the data being sent to the GraphQL API
                 console.log("Data sent to GraphQL API:", {
                   workoutName: "Generated Exercise Routine",
-                  routine: parsedResponse.exerciseRoutine,
+                  routine: stringedResponse.exerciseRoutine,
                 });
         
 
         // Save the workout if the parsed response is not empty
-        if (parsedResponse.exerciseRoutine.length > 0) {
+        if (stringedResponse.exerciseRoutine.length > 0) {
           try {
-            await saveWorkout({
+            const {data} = await saveWorkout({
               variables: {
                 workoutName: "Generated Exercise Routine",
-                routine: parsedResponse.exerciseRoutine,
+                routine: stringedResponse.exerciseRoutine,
               },
+            });
+            dispatch({
+              type: UPDATE_USER,
+              workouts: data.saveWorkout.workouts
             });
             console.log("Exercise routine saved successfully!");
           } catch (error) {
