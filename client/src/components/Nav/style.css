@@ -1,0 +1,16 @@
+nav {
+    font-family: Roboto !important;
+    font-weight: bolder;
+}
+
+
+
+.navbar.custom-navbar {
+    background-color: #222125 !important;
+  }
+  
+  .navbar.custom-navbar .navbar-brand,
+  .navbar.custom-navbar .nav-link {
+    color: rgba(245, 245, 245, 0.637) !important;
+  }
+  
