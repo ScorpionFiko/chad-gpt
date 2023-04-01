@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from "react";
+// import styles
+import "./styles.css";
 
 const exerciseQuotes = [
   "A one-hour workout is 4% of your day. No excuses.",
@@ -27,8 +29,10 @@ function Loading() {
   }, []); // Updated the dependency array to an empty array
 
   return (
-    <div>
+    <div class="container">
       <h1>Patience. The Chad is working...</h1>
+      {/* loading spinner courtesty of loading.io */}
+      <div class="lds-spinner"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
       <p>{quote}</p>
     </div>
   );
