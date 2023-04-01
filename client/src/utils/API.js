@@ -12,3 +12,17 @@ export const searchGoogleImages = async (query) => {
   }
   );
 };
+
+
+export const getOpenAIResponse = async (fitnessInfo) => {
+  return axios.post('/openai',
+  { 
+    fitnessInfo: fitnessInfo 
+  }, 
+  {
+    headers: {
+      "Content-Type": "application/json",
+    },
+  }
+  );
+};
