@@ -4,9 +4,9 @@ import "./style.css";
 function About() {
   return (
     <div id="about-body">
-      <h2 className="text-center">Welcome to Chad GPT, your at home virtual personal trainer. </h2>
+      <h1 className="text-center">Welcome to Chad GPT, your at home virtual personal trainer. </h1>
       <br />
-      <h4 className='text-center pb-5 bg-warning' id="about-background">
+      <h4 className='text-center pb-5 ' id="about-background">
         Our mission is to provide personalized workout routines curated for your
         needs and life. Not everyone has the time or money to spend on a fitness
         coach, but the benefits are undeniable. This application is designed to
