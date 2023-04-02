@@ -32,7 +32,12 @@ function WorkoutDetails(props) {
     return index.exercises;
   });
 
+  const exercise = exerciseRows.map((exercise, index) => {
+    return exercise;
+  });
+
   console.log(exerciseRows);
+  console.log(exercise[0]);
 
   return (
     <div className="container">
@@ -49,14 +54,14 @@ function WorkoutDetails(props) {
               </tr>
             </thead>
             <tbody>
-              {exerciseRows.map((exercise, index) => (
+               {index.exercises.map((category, value) => (
                 <tr>
-                  <th key={exercise._id} scope="row">
-                    {exercise.exerciseName}
+                  <th key={category} value={category} scope="row">
+                    {category.exerciseName}
                   </th>
-                  <td>{exercise.exerciseType}</td>
-                  <td>{exercise.sets}</td>
-                  <td>{exercise.reps}</td>
+                  <td>{category.exerciseType}</td>
+                  <td>{category.sets}</td>
+                  <td>{category.reps}</td>
                 </tr>
               ))}
             </tbody>
