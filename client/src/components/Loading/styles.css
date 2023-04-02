@@ -79,5 +79,23 @@
     }
   }
 
+/* Loading spinner (courtesy of loading.io) */
 
-  
+
+  .font-roboto {
+  font-family: 'Roboto', sans-serif;
+  color: #b5b5b6;
+}
+
+.container {
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 50%
+}
+
+.quote {
+  font-family: 'Roboto', sans-serif;
+  color: #b5b5b6;
+}
