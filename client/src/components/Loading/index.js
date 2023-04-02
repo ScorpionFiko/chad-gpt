@@ -29,16 +29,15 @@ function Loading() {
   }, []); // Updated the dependency array to an empty array
 
   return (
-    <div className="container h-100">
-    <div className="row h-100 align-items-center justify-content-center">
-      <div className="col-12 col-md-8 col-lg-6 text-center">
-        <h1>Patience. The Chad is working...</h1>
-      {/* loading spinner courtesty of loading.io */}
-      <div className="lds-spinner"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
-      <p className="quote">{quote}</p>
+
+      <div className="container">
+        <div className="container-xl">
+          <h1 className="text-center">Patience. The Chad is working...</h1>
+          <div className="lds-spinner d-flex justify-content-center"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
+          <p className="text-center quote">{quote}</p>
         </div>
       </div>
-    </div>
+
   );
 }
 
