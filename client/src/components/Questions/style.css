@@ -1,0 +1,69 @@
+/* override default styles of react-bootstrap */
+
+/* card */
+.shadow-lg.p-3.mb-5.bg-white.rounded {
+    background-color: #b5b5b6 !important;
+    color: #1f1e24fa;
+    border: none;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    padding: 20px;
+    margin-bottom: 20px;
+    font-family: 'Roboto', serif;
+    opacity: 0.8;
+  }
+  
+  /* form */
+  .shadow-lg.p-3.mb-5.bg-white.rounded form {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .shadow-lg.p-3.mb-5.bg-white.rounded .form-group {
+    margin-bottom: 20px;
+  }
+  
+  /* form controls */
+  .shadow-lg.p-3.mb-5.bg-white.rounded .form-control {
+    background-color: #a3a3a3;
+    color: #fff;
+    border: none;
+    /* border-radius: 5px; */
+    padding: 10px;
+  }
+  
+  .shadow-lg.p-3.mb-5.bg-white.rounded .form-control:focus {
+    background-color: #a3a3a3;
+    outline: none !important;
+  }
+  
+  /* form labels */
+  .shadow-lg.p-3.mb-5.bg-white.rounded label {
+    color: #1f1e24fa;
+    font-weight: bold;
+    margin-bottom: 5px;
+  }
+  
+  /* submit button */
+  .shadow-lg.p-3.mb-5.bg-white.rounded .btn-primary {
+    background-color: #1f1e24fa;
+    border-color: #1f1e24fa;
+    border-radius: 5px;
+    padding: 10px;
+    width: 100%;
+    font-weight: bold;
+  }
+  
+  .shadow-lg.p-3.mb-5.bg-white.rounded .btn-primary:hover {
+    background-color: black;
+    border-color: black;
+  }
+  
+  /* error text */
+  .shadow-lg.p-3.mb-5.bg-white.rounded .error-text {
+    color: #dc3545;
+    margin-top: 10px;
+    font-size: 14px;
+  }
+
+  
