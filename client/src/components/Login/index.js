@@ -4,6 +4,7 @@ import { LOGIN } from "../../utils/mutations";
 import Auth from "../../utils/auth";
 import {useDispatch} from "react-redux"
 import { LOAD_USER } from "../../utils/actions";
+import { idbPromise } from "../../utils/helpers";
 
 function Login(props) {
   const [formState, setFormState] = useState({ email: "", password: "" });
@@ -16,10 +17,16 @@ function Login(props) {
       const mutationResponse = await login({
         variables: { email: formState.email, password: formState.password },
       });
+      // update global state
       dispatch({
         type: LOAD_USER,
         currentUser: mutationResponse.data.login.user
-      })
+      });
+      // update local database
+      idbPromise('user', 'put', {
+        ...mutationResponse.data.login.user,
+      });
+      // save token to local storage
       const token = mutationResponse.data.login.token;
       Auth.login(token);
     } catch (e) {
