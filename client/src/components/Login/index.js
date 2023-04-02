@@ -4,6 +4,7 @@ import { LOGIN } from "../../utils/mutations";
 import Auth from "../../utils/auth";
 import {useDispatch} from "react-redux"
 import { LOAD_USER } from "../../utils/actions";
+import "./style.css";
 
 function Login(props) {
   const [formState, setFormState] = useState({ email: "", password: "" });
