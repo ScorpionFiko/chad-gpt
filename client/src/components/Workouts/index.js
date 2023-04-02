@@ -6,13 +6,8 @@ import WorkoutDetails from "../WorkoutDetails";
 function Workouts() {
   const { currentUser } = useSelector((state) => state);
   const [workouts] = useState([{ ...currentUser.workouts }]);
-  const [newWorkout] = useState([{ ...currentUser.workouts[0] }]);
-
-  const {workoutList} = Object.keys(workouts[0]);
-  console.log(workoutList);
-
-  console.log(workouts[0]);
-  console.log(newWorkout);
+  const myWorkouts = Object.values(workouts[0]);
+  console.log(myWorkouts);
 
   const [showDetails, setShowDetails] = useState(false);
 
@@ -25,7 +20,7 @@ function Workouts() {
   ) : (
     <div>
       <h3>Your Workouts:</h3>
-      {newWorkout.map((workout, index) => (
+      {myWorkouts.map((workout, index) => (
         <div key={index}>
           <button onClick={handleClick} className="btn btn-primary">
             {workout.workoutName}
