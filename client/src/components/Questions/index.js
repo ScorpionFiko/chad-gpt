@@ -3,7 +3,7 @@ import { useState } from "react";
 import { useHistory } from "react-router-dom";
 import { useMutation } from "@apollo/client";
 import { SAVE_WORKOUT } from '../../utils/mutations';
-
+import "./style.css"
 import Loading from "../Loading/index";
 import { UPDATE_USER } from "../../utils/actions";
 import { useDispatch } from 'react-redux'

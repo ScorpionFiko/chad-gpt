@@ -2,10 +2,14 @@
 
 .lds-spinner {
     color: official;
-    display: inline-block;
+    display: flex;
     position: relative;
     width: 80px;
     height: 80px;
+    margin-left: 38%;
+    margin-top: 10px;
+    margin-bottom: 10px;
+
   }
   .lds-spinner div {
     transform-origin: 40px 40px;
@@ -79,5 +83,28 @@
     }
   }
 
+/* Loading spinner (courtesy of loading.io) */
 
-  
+
+  .font-roboto {
+  font-family: 'Roboto', sans-serif;
+  color: #b5b5b6;
+}
+
+.container {
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 50%
+}
+
+.quote {
+  font-family: 'Roboto', sans-serif;
+  color: #b5b5b6;
+}
+
+.full-width {
+  width: 100%;
+}
+
