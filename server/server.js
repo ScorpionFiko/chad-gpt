@@ -41,6 +41,7 @@ app.post('/google_image_search', async (req, res) => {
 });
 
 app.post('/openai', async (req, res) => {
+  console.log("Request received:", req.body); // Add this line to log the request body
   const {
     age,
     height,

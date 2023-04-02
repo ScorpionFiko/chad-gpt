@@ -29,10 +29,10 @@ function Loading() {
   }, []); // Updated the dependency array to an empty array
 
   return (
-    <div class="container">
+    <div className="container">
       <h1>Patience. The Chad is working...</h1>
       {/* loading spinner courtesty of loading.io */}
-      <div class="lds-spinner"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
+      <div className="lds-spinner"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
       <p>{quote}</p>
     </div>
   );
