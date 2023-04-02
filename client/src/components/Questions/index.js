@@ -3,25 +3,14 @@ import { useState } from "react";
 import { useHistory } from "react-router-dom";
 import { useMutation } from "@apollo/client";
 import { SAVE_WORKOUT } from '../../utils/mutations';
-import { OpenAIApi, Configuration } from "openai";
+
 import Loading from "../Loading/index";
 import { UPDATE_USER } from "../../utils/actions";
 import { useDispatch } from 'react-redux'
-
-import { config } from "dotenv";
-config(); // load .env file
-
-const apiKey = process.env.REACT_APP_API_KEY;
-
-const openai = new OpenAIApi(
-  new Configuration({
-    apiKey: process.env.REACT_APP_API_KEY,
-  })
-);
-
+import { getOpenAIResponse } from '../../utils/API'
 
 // State to hold user input
-function ExerciseRoutineGenerator() { 
+function ExerciseRoutineGenerator() {
   const dispatch = useDispatch();
   const [fitnessInfo, setFitnessInfo] = useState({
     age: "",
@@ -33,8 +22,8 @@ function ExerciseRoutineGenerator() {
     fitnessGoal: "",
   });
 
-  // State to hold the exercise routine
-  const [exerciseRoutine, setExerciseRoutine] = useState([]);
+  // // State to hold the exercise routine
+  // const [exerciseRoutine, setExerciseRoutine] = useState([]);
 
   // State to hold the loading state
   const [isLoading, setIsLoading] = useState(false);
@@ -45,259 +34,170 @@ function ExerciseRoutineGenerator() {
   // History object to redirect to the dashboard
   const history = useHistory();
 
- 
-   // function to handle the change in the input fields
+
+  // function to handle the change in the input fields
   const handleFitnessInfoChange = (event) => {
-    setFitnessInfo({ ...fitnessInfo, [event.target.name]: event.target.value }); 
+    setFitnessInfo({ ...fitnessInfo, [event.target.name]: event.target.value });
   };
 
+  // function to handle the submit 
   const handleSubmit = async (event) => {
     event.preventDefault();
-
-    const {
-      age,
-      height,
-      weight,
-      gender,
-      exerciseFrequency,
-      equipment,
-      fitnessGoal,
-    } = fitnessInfo;
-
-console.log(fitnessInfo);
-
-    const aiPrompt = `
-      ${age} years of age, ${height} in height, ${weight}lbs, ${gender}, able to exercise ${exerciseFrequency} times per week, access to ${equipment}, end goal is ${fitnessGoal} and 1 month to achieve goal
-
-      build exercise routine given this prompt. respond ONLY in JSON. Do not include any notes. Use this as schema:
-
-      {
-        "exerciseRoutine": [
-          {
-            "day": "Monday",
-            "exercises": [
-              {
-                "exerciseName": "",
-                "exerciseType": "",
-                "sets": "",
-                "reps": "",
-                "secondsRest": "",
-                "minutesDuration": "",
-                "intensity": "",
-              },
-            ],
-          },
-        ],
-      }
-    `;
-    // console.log(aiPrompt);
-
-
-
-    async function callApi() {
-      const res = await openai.createChatCompletion({
-        model: "gpt-3.5-turbo",
-        messages: [{ role: "user", content: aiPrompt }],
-        max_tokens: 2000,
-      });
-
-      const response = res.data.choices[0].message.content;
-
-      // Sanitize the response to remove unexpected tokens and fix JSON formatting issues
-      const sanitizedResponse = response
-        .replace(/,\s*]/g, "]")
-        .replace(/,\s*}/g, "}");
-
+    // set loading to true to show the loading page while info is retrieved
+    setIsLoading(true);
+    const response = await getOpenAIResponse(fitnessInfo);
+    // 
+    if (response.data) {
       try {
-        const stringedResponse = JSON.parse(JSON.stringify(JSON.parse(sanitizedResponse), (k, v) => v && typeof v === 'object' ? v : '' + v))
-        const parsedResponse = JSON.parse(sanitizedResponse);
-        setExerciseRoutine(stringedResponse.exerciseRoutine);
-                // Console log the data being sent to the GraphQL API
-                console.log("Data sent to GraphQL API:", {
-                  workoutName: "Generated Exercise Routine",
-                  routine: stringedResponse.exerciseRoutine,
-                });
-        
-
-        // Save the workout if the parsed response is not empty
-        if (stringedResponse.exerciseRoutine.length > 0) {
-          try {
-            const {data} = await saveWorkout({
-              variables: {
-                workoutName: "Generated Exercise Routine",
-                routine: stringedResponse.exerciseRoutine,
-              },
-            });
-            dispatch({
-              type: UPDATE_USER,
-              workouts: data.saveWorkout.workouts
-            });
-            console.log("Exercise routine saved successfully!");
-          } catch (error) {
-            console.error("Error saving exercise routine:", error);
-          }
+        const {exerciseRoutine} = JSON.parse(JSON.stringify(JSON.parse(response.data.replace(/,\s*]/g, "]").replace(/,\s*}/g, "}")), (k, v) => v && typeof v === 'object' ? v : '' + v))
+        if (exerciseRoutine.length > 0) {
+          const { data } = await saveWorkout({
+            variables: {
+              workoutName: `${fitnessInfo.fitnessGoal}: ${new Date(Date.now()).toUTCString()}`,
+              routine: exerciseRoutine,
+            },
+          });
+          dispatch({
+            type: UPDATE_USER,
+            workouts: data.saveWorkout.workouts
+          });
         }
 
       } catch (error) {
         console.error("Error parsing response:", error);
       }
+      setIsLoading(false);
+
+      // Redirect to the dashboard after the API call is complete
+      redirectToDashboard();
+    } else {
+      // response is empty
     }
-
-        // Set the loading state to true
-        setIsLoading(true); 
-
-    await callApi();
-
-    // Set the loading state to false after the API call is complete
-    setIsLoading(false);
-
-    // Redirect to the dashboard after the API call is complete
-    redirectToDashboard();
   };
 
   // Function to redirect to the dashboard
   const redirectToDashboard = () => {
     history.push("/");
   };
-  
 
-    // Conditionally save the workout if the exercise routine is not empty
-    // if (exerciseRoutine.length > 0) {
-    //   try {
-    //     await saveWorkout({
-    //       variables: {
-    //         workoutName: "Generated Exercise Routine", // Change this
-    //         routine: exerciseRoutine,
-    //       },
-    //     });
-    //     console.log("Exercise routine saved successfully!");
-    //   } catch (error) {
-    //     console.error("Error saving exercise routine:", error);
-    //   }
-    // }
+  return (
+    <>
+      {isLoading ? (
+        <Loading />
+      ) : (
+        <div className="shadow-lg p-3 mb-5 bg-white rounded" style={{ width: "50%", margin: "50px auto" }}>
+          <h2 className="text-center">Create Your Workout</h2>
+          <form onSubmit={handleSubmit}>
+            <div className="form-group">
+              <label>
+                Age:
+                <input
+                  className="form-control"
+                  type="number"
+                  name="age"
+                  value={fitnessInfo.age}
+                  onChange={handleFitnessInfoChange}
+                />
+              </label>
+            </div>
+            <div className="form-group">
+              <label>
+                Height (feet and inches):
+                <input
+                  className="form-control"
+                  type="text"
+                  name="height"
+                  value={fitnessInfo.height}
+                  onChange={handleFitnessInfoChange}
+                />
+              </label>
+            </div>
+            <div className="form-group">
+              <label>
+                Weight (pounds):
+                <input
+                  className="form-control"
+                  type="number"
+                  name="weight"
+                  value={fitnessInfo.weight}
+                  onChange={handleFitnessInfoChange}
+                />
+              </label>
+            </div>
+            <div className="form-group">
+              <label>
+                Gender:
+                <select
+                  className="form-control"
+                  name="gender"
+                  value={fitnessInfo.gender}
+                  onChange={handleFitnessInfoChange}
+                >
+                  <option value="">Select</option>
+                  <option value="male">Male</option>
+                  <option value="female">Female</option>
+                </select>
+              </label>
+            </div>
+            <div className="form-group">
+              <label>
+                Exercise frequency (days per week):
+                <input
+                  className="form-control"
+                  type="number"
+                  name="exerciseFrequency"
+                  value={fitnessInfo.exerciseFrequency}
+                  onChange={handleFitnessInfoChange}
+                />
+              </label>
+            </div>
+            <div className="form-group">
+              <label>
+                Equipment:
+                <select
+                  className="form-control"
+                  name="equipment"
+                  value={fitnessInfo.equipment}
+                  onChange={handleFitnessInfoChange}
+                >
+                  <option value="">Select</option>
+                  <option value="Loose weights">Loose weights</option>
+                  <option value="Bicycle">Bicycle</option>
+                  <option value="Resistance bands">Resistance bands</option>
+                  <option value="Bodyweight">Bodyweight</option>
+                  <option value="A full gym">A full gym</option>
+                </select>
+              </label>
+            </div>
+            <div className="form-group">
+              <label>
+                Fitness goal:
+                <select
+                  className="form-control"
+                  name="fitnessGoal"
+                  value={fitnessInfo.fitnessGoal}
+                  onChange={handleFitnessInfoChange}
+                >
+                  <option value="">Select</option>
+                  <option value="Lose weight">Lose weight</option>
+                  <option value="Build muscle">Build muscle</option>
+                  <option value="Improve cardiovascular health">
+                    Improve cardiovascular health
+                  </option>
+                  <option value="Increase flexibility">Increase flexibility</option>
+                  <option value="Run a marathon">Run a marathon</option>
+                </select>
+              </label>
+            </div>
+            <div className="flex-row flex-end">
+              <button type="submit" className="btn btn-primary">Generate Exercise Routine</button>
+            </div>
+          </form>
+        </div>
+      )}
+    </>
+  );
+};
 
-
-    // ------------------
-  
-
-    return (
-      <>
-        {isLoading ? (
-          <Loading />
-        ) : (
-          <div className="shadow-lg p-3 mb-5 bg-white rounded" style={{ width: "50%", margin: "50px auto" }}>
-            <h2 className="text-center">Create Your Workout</h2>
-            <form onSubmit={handleSubmit}>
-              <div className="form-group">
-                <label>
-                  Age:
-                  <input
-                    className="form-control"
-                    type="number"
-                    name="age"
-                    value={fitnessInfo.age}
-                    onChange={handleFitnessInfoChange}
-                  />
-                </label>
-              </div>
-              <div className="form-group">
-                <label>
-                  Height (feet and inches):
-                  <input
-                    className="form-control"
-                    type="text"
-                    name="height"
-                    value={fitnessInfo.height}
-                    onChange={handleFitnessInfoChange}
-                  />
-                </label>
-              </div>
-              <div className="form-group">
-                <label>
-                  Weight (pounds):
-                  <input
-                    className="form-control"
-                    type="number"
-                    name="weight"
-                    value={fitnessInfo.weight}
-                    onChange={handleFitnessInfoChange}
-                  />
-                </label>
-              </div>
-              <div className="form-group">
-                <label>
-                  Gender:
-                  <select
-                    className="form-control"
-                    name="gender"
-                    value={fitnessInfo.gender}
-                    onChange={handleFitnessInfoChange}
-                  >
-                    <option value="">Select</option>
-                    <option value="male">Male</option>
-                    <option value="female">Female</option>
-                  </select>
-                </label>
-              </div>
-              <div className="form-group">
-                <label>
-                  Exercise frequency (days per week):
-                  <input
-                    className="form-control"
-                    type="number"
-                    name="exerciseFrequency"
-                    value={fitnessInfo.exerciseFrequency}
-                    onChange={handleFitnessInfoChange}
-                  />
-                </label>
-              </div>
-              <div className="form-group">
-                <label>
-                  Equipment:
-                  <select
-                    className="form-control"
-                    name="equipment"
-                    value={fitnessInfo.equipment}
-                    onChange={handleFitnessInfoChange}
-                  >
-                    <option value="">Select</option>
-                    <option value="Loose weights">Loose weights</option>
-                    <option value="Bicycle">Bicycle</option>
-                    <option value="Resistance bands">Resistance bands</option>
-                    <option value="Bodyweight">Bodyweight</option>
-                    <option value="A full gym">A full gym</option>
-                  </select>
-                </label>
-              </div>
-              <div className="form-group">
-                <label>
-                  Fitness goal:
-                  <select
-                    className="form-control"
-                    name="fitnessGoal"
-                    value={fitnessInfo.fitnessGoal}
-                    onChange={handleFitnessInfoChange}
-                  >
-                    <option value="">Select</option>
-                    <option value="Lose weight">Lose weight</option>
-                    <option value="Build muscle">Build muscle</option>
-                    <option value="Improve cardiovascular health">
-                      Improve cardiovascular health
-                    </option>
-                    <option value="Increase flexibility">Increase flexibility</option>
-                    <option value="Run a marathon">Run a marathon</option>
-                  </select>
-                </label>
-              </div>
-              <div className="flex-row flex-end">
-                <button type="submit" className="btn btn-primary">Generate Exercise Routine</button>
-              </div>
-            </form>
-          </div>
-        )}
-      </>
-    );
-  };
-    
 
 export default ExerciseRoutineGenerator;
