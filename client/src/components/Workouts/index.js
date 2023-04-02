@@ -7,14 +7,12 @@ function Workouts() {
   const { currentUser } = useSelector((state) => state);
   const [workouts] = useState([{ ...currentUser.workouts }]);
   const myWorkouts = Object.values(workouts[0]);
-  console.log(myWorkouts);
+  const [selectedWorkout, setSelectedWorkout] = useState(null);
 
-  const [showDetails, setShowDetails] = useState(false);
-
-  const handleClick = () => {
-    setShowDetails(true);
+  const handleClick = (workoutName) => {
+    setSelectedWorkout(workoutName);
   };
-
+  
   return !currentUser.workouts[0] ? (
     <h3>Click the link above to create your first workout!</h3>
   ) : (
@@ -22,14 +20,18 @@ function Workouts() {
       <h3>Your Workouts:</h3>
       {myWorkouts.map((workout, index) => (
         <div key={index}>
-          <button onClick={handleClick} className="btn btn-primary">
+          <button
+            onClick={() => handleClick(workout.workoutName)}
+            className="btn btn-primary"
+          >
             {workout.workoutName}
           </button>
-          {showDetails && <WorkoutDetails wName={workout.workoutName} />}
+          {selectedWorkout === workout.workoutName && (
+            <WorkoutDetails wName={workout.workoutName} />
+          )}
         </div>
       ))}
     </div>
   );
 }
-
 export default Workouts;
