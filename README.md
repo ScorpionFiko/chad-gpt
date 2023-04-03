@@ -10,22 +10,16 @@ Each workout aims at providing the user the workout routine which consists of on
 Chad-GPT has the ability to be used offline on the device that was previously used to access the application. This makes the application perfect for taking it locations where internet connection is not readily available. 
 
 Below is the image of the Chad-GPT when user is not logged in.
-![CGPT - Landing](./assets/images/CGPT-01-cart.png)
+![CGPT - Landing](./assets/images/CGPT-01-landing.png)
 
 Below is the image of the Chad-GPT when user is logged in.
-![CGPT - Landing Logged In](./assets/images/CGPT-02-cart-logged-in.png)
+![CGPT - Landing Logged In](./assets/images/CGPT-02-landing-logged-in.png)
 
 Below is the image of the Chad-GPT when user creates a workout
-![CGPT - Checkout](./assets/images/CGPT-03-checkout.png)
+![CGPT - workout](./assets/images/CGPT-03-workout.png)
 
-Below is the image of the Chad-GPT's user dashboard
-![CGPT - Stripe](./assets/images/CGPT-04-stripe.png)
-
-Below is the image of the Chad-GPT when user has selected a routine.
-![CGPT - Order History](./assets/images/CGPT-05-order-history.png)
-
-Below is the image of the Chad-GPT when user has selected an exercise from the routine.
-![CGPT - Order History](./assets/images/CGPT-05-order-history.png)
+Below is the image of the Chad-GPT when user has selected a routine and image of an exercise.
+![CGPT - routine](./assets/images/CGPT-04-routine.png)
 
 
 
@@ -76,6 +70,7 @@ The Custom Search Engine, also known as Programmable Search Engine, is a feature
 
 ### OpenAI
 
+OpenAI is an Artificial Intelligence (AI) laboratory that conducts AI research. Their flagship - ChatGPT -  interacts in a conversational way where the user can ask a question and the AI will respond. For the application, ChatGPT was provided with a sample JSON response to adhere to in order for the response to be properly parsed and saved in the database.
 
 
 back to [Table of Contents](#table-of-contents)
@@ -130,6 +125,8 @@ Here are some of the items to be considered for future development.
 1. Add 'hire a trainer' option where the user can select between a small listing of trainers and also pay for the services
 2. Save some of the user input info (age, height weight, gender) into the database for quicker exercise build
 3. Move images closer to the actual workout card so that they are more easily visible on handheld devices.
+4. Progress tracking
+5. More interactivity for mobile devices.
 
 
 back to [Table of Contents](#table-of-contents)
