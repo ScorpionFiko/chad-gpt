@@ -2,9 +2,12 @@ import React, { useState } from 'react';
 import Auth from '../../utils/auth';
 import { Link } from 'react-router-dom';
 import './style.css';
+import { useSelector } from 'react-redux'
+import { idbPromise } from '../../utils/helpers';
 
 function Navigation() {
   const [collapsed, setCollapsed] = useState(true);
+  const {currentUser} = useSelector(state=>state);
 
   const toggleNavbar = () => {
     setCollapsed(!collapsed);
@@ -13,6 +16,19 @@ function Navigation() {
   const closeNavbar = () => {
     if (!collapsed) setCollapsed(true);
   };
+
+  const handleLogout = (event) => {
+    event.preventDefault();
+    // clear user from redux
+    // dispatch({
+    //   type: CLEAR_USER,
+    //   currentUser: new Object()
+    // });
+    // clear user from indexedDb
+    idbPromise('user', 'delete', currentUser);
+    // clear token
+    Auth.logout();
+  }
 
   const navClass = collapsed ? 'collapse navbar-collapse' : 'navbar-collapse';
 
@@ -42,10 +58,7 @@ function Navigation() {
             <a
               className="nav-link"
               href="/"
-              onClick={(e) => {
-                e.preventDefault();
-                Auth.logout();
-              }}
+              onClick={handleLogout}
             >
               Logout
             </a>

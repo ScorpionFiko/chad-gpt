@@ -92,7 +92,7 @@ app.post('/openai', async (req, res) => {
       });
       res.json(response.data.choices[0].message.content);
     } catch(err) {
-      res.json([]);
+      throw new Error('Workout cannot be generated');
     }
 });
 
