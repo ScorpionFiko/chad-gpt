@@ -3,7 +3,7 @@ University of Toronto - Project 03 - Team 09 - Chad-GPT
 
 ## Description
 
-Repository containing the code for the chad-gpt application. Chad-GPT is your one stop shopping for creating workouts that match your fitness goal. All other apps target specific type of workout and you end up either downloading additional apps or paying higher fees in order to avail from additional fitness routines. Chad-GPT solves that issue by taking user input and tailoring the workout based on the needs. Not only that, the user can create and save several different types of workouts and alternate between them.
+Repository containing the code for the Chad-GPT application. Chad-GPT is your one stop shopping for creating workouts that match your fitness goal. All other apps target specific type of workout and you end up either downloading additional apps or paying higher fees in order to avail from additional fitness routines. Chad-GPT solves that issue by taking user input and tailoring the workout based on the needs. Not only that, the user can create and save several different types of workouts and alternate between them.
 
 Each workout aims at providing the user the workout routine which consists of one or more exercises. Each exercise comes with the number of sets, reps per set, duration (in case of jogs or treadmill runs), and a possible image of how to perform the exercise.
 
@@ -65,7 +65,7 @@ According to the official documentation at https://redux.js.org/ Redux:
 
 ### Google Custom Search Engine:
 
-The Custom Search Engine, also known as Programmable Search Engine, is a feature that goolge provides where a user can modify the Google search engine to only look for specific types in information. For this specific application, the search engine has been programmed to only search images from workoutlabs.com to retrieve watermarked images of the exercises.
+The Custom Search Engine, also known as Programmable Search Engine, is a feature that Goolge provides where a user can modify the Google search engine to only look for specific types in information. For this specific application, the search engine has been programmed to only search images from workoutlabs.com to retrieve watermarked images of the exercises.
 
 
 ### OpenAI
@@ -81,7 +81,7 @@ To access application
 1. Go to https://chadgpt-fitness.herokuapp.com/ to access the application
 2. log in or set up an account
 3. To create a new workout, click on the Build workout menu option
-    1. Enter informatoin in all inputs
+    1. Enter information in all inputs
     2. Click on the generate button and wait for the application to update. Depending on the workout type, it may take up to two minutes to fully get the information from OpenAI
 4. The page should refresh and you should see the work out as a button
     1. click on the workout
