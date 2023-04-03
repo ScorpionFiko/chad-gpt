@@ -5,6 +5,7 @@ import Auth from "../../utils/auth";
 import { ADD_USER } from "../../utils/mutations";
 import { useDispatch } from 'react-redux';
 import { LOAD_USER } from "../../utils/actions";
+import { idbPromise } from "../../utils/helpers";
 
 function Signup(props) {
   const [formState, setFormState] = useState({ email: "", password: "" });
@@ -21,10 +22,15 @@ function Signup(props) {
         lastName: formState.lastName,
       },
     });
+    // update global state
     dispatch({
       type: LOAD_USER,
       currentUser: mutationResponse.data.addUser.user
-    })
+    });
+    // update local database
+    idbPromise('user', 'put', {
+      ...mutationResponse.data.addUser.user,
+    });
     const token = mutationResponse.data.addUser.token;
     Auth.login(token);
 
@@ -47,7 +53,7 @@ function Signup(props) {
         <div className="form-group">
           <label htmlFor="firstName">First Name:</label>
           <input
-          className="form-control"
+            className="form-control"
             placeholder="First"
             name="firstName"
             type="firstName"
@@ -58,7 +64,7 @@ function Signup(props) {
         <div className="form-group">
           <label htmlFor="lastName">Last Name:</label>
           <input
-          className="form-control"
+            className="form-control"
             placeholder="Last"
             name="lastName"
             type="lastName"
@@ -69,7 +75,7 @@ function Signup(props) {
         <div className="form-group">
           <label htmlFor="email">Email:</label>
           <input
-          className="form-control"
+            className="form-control"
             placeholder="youremail@test.com"
             name="email"
             type="email"
@@ -80,7 +86,7 @@ function Signup(props) {
         <div className="form-group">
           <label htmlFor="pwd">Password:</label>
           <input
-          className="form-control"
+            className="form-control"
             placeholder="******"
             name="password"
             type="password"

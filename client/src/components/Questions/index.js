@@ -9,7 +9,7 @@ import { UPDATE_USER } from "../../utils/actions";
 import { useDispatch } from 'react-redux'
 import { getOpenAIResponse } from '../../utils/API'
 import image from "./form-image.jpg"
-
+import { idbPromise } from "../../utils/helpers";
 
 // State to hold user input
 function ExerciseRoutineGenerator() {
@@ -47,34 +47,34 @@ function ExerciseRoutineGenerator() {
     event.preventDefault();
     // set loading to true to show the loading page while info is retrieved
     setIsLoading(true);
-    const response = await getOpenAIResponse(fitnessInfo);
     // 
-    if (response.data) {
-      try {
-        const {exerciseRoutine} = JSON.parse(JSON.stringify(JSON.parse(response.data.replace(/,\s*]/g, "]").replace(/,\s*}/g, "}")), (k, v) => v && typeof v === 'object' ? v : '' + v))
-        if (exerciseRoutine.length > 0) {
-          const { data } = await saveWorkout({
-            variables: {
-              workoutName: `${fitnessInfo.fitnessGoal}: ${new Date(Date.now()).toUTCString()}`,
-              routine: exerciseRoutine,
-            },
-          });
-          dispatch({
-            type: UPDATE_USER,
-            workouts: data.saveWorkout.workouts
-          });
-        }
-
-      } catch (error) {
-        console.error("Error parsing response:", error);
+    try {
+      const response = await getOpenAIResponse(fitnessInfo);
+      const { exerciseRoutine } = JSON.parse(JSON.stringify(JSON.parse(response.data.replace(/,\s*]/g, "]").replace(/,\s*}/g, "}")), (k, v) => v && typeof v === 'object' ? v : '' + v))
+      if (exerciseRoutine.length > 0) {
+        const { data } = await saveWorkout({
+          variables: {
+            workoutName: `${fitnessInfo.fitnessGoal}: ${new Date(Date.now()).toUTCString()}`,
+            routine: exerciseRoutine,
+          },
+        });
+        // update global state
+        dispatch({
+          type: UPDATE_USER,
+          workouts: data.saveWorkout.workouts
+        });
+        // update local database
+        idbPromise('user', 'put', data.saveWorkout);
       }
-      setIsLoading(false);
 
-      // Redirect to the dashboard after the API call is complete
-      redirectToDashboard();
-    } else {
-      // response is empty
+    } catch (error) {
+      console.error("Error parsing response:", error);
     }
+    setIsLoading(false);
+
+    // Redirect to the dashboard after the API call is complete
+    redirectToDashboard();
+
   };
 
   // Function to redirect to the dashboard
@@ -190,30 +190,30 @@ function ExerciseRoutineGenerator() {
                           <option value="Lose weight">Lose weight</option>
                           <option value="Build muscle">Build</option>
                           <option value="Improve cardiovascular health">
-                          Improve cardiovascular health
-                        </option>
-                        <option value="Increase flexibility">Increase flexibility</option>
-                        <option value="Run a marathon">Run a marathon</option>
-                      </select>
-                    </label>
-                  </div>
-                  <div className="d-grid gap-2 mb-3">
-                    <button type="submit" className="btn btn-primary btn-lg">Generate Exercise Routine</button>
-                  </div>
-                </form>
+                            Improve cardiovascular health
+                          </option>
+                          <option value="Increase flexibility">Increase flexibility</option>
+                          <option value="Run a marathon">Run a marathon</option>
+                        </select>
+                      </label>
+                    </div>
+                    <div className="d-grid gap-2 mb-3">
+                      <button type="submit" className="btn btn-primary btn-lg">Generate Exercise Routine</button>
+                    </div>
+                  </form>
+                </div>
               </div>
             </div>
           </div>
         </div>
-      </div>
-    )}
-  </>
-);
+      )}
+    </>
+  );
 };
 
 export default ExerciseRoutineGenerator;
-  
-  
+
+
 
 
 

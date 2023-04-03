@@ -4,9 +4,10 @@ import { LOGIN } from "../../utils/mutations";
 import Auth from "../../utils/auth";
 import {useDispatch} from "react-redux"
 import { LOAD_USER } from "../../utils/actions";
+import { idbPromise } from "../../utils/helpers";
 import "./style.css";
 
-function Login(props) {
+function Login() {
   const [formState, setFormState] = useState({ email: "", password: "" });
   const [login, { error }] = useMutation(LOGIN);
   const dispatch = useDispatch();
@@ -17,10 +18,15 @@ function Login(props) {
       const mutationResponse = await login({
         variables: { email: formState.email, password: formState.password },
       });
+      // update global state
       dispatch({
         type: LOAD_USER,
         currentUser: mutationResponse.data.login.user
-      })
+      });
+      // update local database
+      idbPromise('user', 'put', {
+        ...mutationResponse.data.login.user,
+      });
       const token = mutationResponse.data.login.token;
       Auth.login(token);
     } catch (e) {
