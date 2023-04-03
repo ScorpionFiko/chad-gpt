@@ -188,7 +188,7 @@ function ExerciseRoutineGenerator() {
                         >
                           <option value="">Select</option>
                           <option value="Lose weight">Lose weight</option>
-                          <option value="Build muscle">Build</option>
+                          <option value="Build muscle">Build muscle</option>
                           <option value="Improve cardiovascular health">
                             Improve cardiovascular health
                           </option>
