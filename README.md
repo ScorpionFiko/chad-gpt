@@ -3,29 +3,23 @@ University of Toronto - Project 03 - Team 09 - Chad-GPT
 
 ## Description
 
-Repository containing the code for the chad-gpt application. Chad-GPT is your one stop shopping for creating workouts that match your fitness goal. All other apps target specific type of workout and you end up either downloading additional apps or paying higher fees in order to avail from additional fitness routines. Chad-GPT solves that issue by taking user input and tailoring the workout based on the needs. Not only that, the user can create and save several different types of workouts and alternate between them.
+Repository containing the code for the Chad-GPT application. Chad-GPT is your one stop shopping for creating workouts that match your fitness goal. All other apps target specific type of workout and you end up either downloading additional apps or paying higher fees in order to avail from additional fitness routines. Chad-GPT solves that issue by taking user input and tailoring the workout based on the needs. Not only that, the user can create and save several different types of workouts and alternate between them.
 
 Each workout aims at providing the user the workout routine which consists of one or more exercises. Each exercise comes with the number of sets, reps per set, duration (in case of jogs or treadmill runs), and a possible image of how to perform the exercise.
 
 Chad-GPT has the ability to be used offline on the device that was previously used to access the application. This makes the application perfect for taking it locations where internet connection is not readily available. 
 
 Below is the image of the Chad-GPT when user is not logged in.
-![CGPT - Landing](./assets/images/CGPT-01-cart.png)
+![CGPT - Landing](./assets/images/CGPT-01-landing.png)
 
 Below is the image of the Chad-GPT when user is logged in.
-![CGPT - Landing Logged In](./assets/images/CGPT-02-cart-logged-in.png)
+![CGPT - Landing Logged In](./assets/images/CGPT-02-landing-logged-in.png)
 
 Below is the image of the Chad-GPT when user creates a workout
-![CGPT - Checkout](./assets/images/CGPT-03-checkout.png)
+![CGPT - workout](./assets/images/CGPT-03-workout.png)
 
-Below is the image of the Chad-GPT's user dashboard
-![CGPT - Stripe](./assets/images/CGPT-04-stripe.png)
-
-Below is the image of the Chad-GPT when user has selected a routine.
-![CGPT - Order History](./assets/images/CGPT-05-order-history.png)
-
-Below is the image of the Chad-GPT when user has selected an exercise from the routine.
-![CGPT - Order History](./assets/images/CGPT-05-order-history.png)
+Below is the image of the Chad-GPT when user has selected a routine and image of an exercise.
+![CGPT - routine](./assets/images/CGPT-04-routine.png)
 
 
 
@@ -71,11 +65,12 @@ According to the official documentation at https://redux.js.org/ Redux:
 
 ### Google Custom Search Engine:
 
-The Custom Search Engine, also known as Programmable Search Engine, is a feature that goolge provides where a user can modify the Google search engine to only look for specific types in information. For this specific application, the search engine has been programmed to only search images from workoutlabs.com to retrieve watermarked images of the exercises.
+The Custom Search Engine, also known as Programmable Search Engine, is a feature that Goolge provides where a user can modify the Google search engine to only look for specific types in information. For this specific application, the search engine has been programmed to only search images from workoutlabs.com to retrieve watermarked images of the exercises.
 
 
 ### OpenAI
 
+OpenAI is an Artificial Intelligence (AI) laboratory that conducts AI research. Their flagship - ChatGPT -  interacts in a conversational way where the user can ask a question and the AI will respond. For the application, ChatGPT was provided with a sample JSON response to adhere to in order for the response to be properly parsed and saved in the database.
 
 
 back to [Table of Contents](#table-of-contents)
@@ -86,7 +81,7 @@ To access application
 1. Go to https://chadgpt-fitness.herokuapp.com/ to access the application
 2. log in or set up an account
 3. To create a new workout, click on the Build workout menu option
-    1. Enter informatoin in all inputs
+    1. Enter information in all inputs
     2. Click on the generate button and wait for the application to update. Depending on the workout type, it may take up to two minutes to fully get the information from OpenAI
 4. The page should refresh and you should see the work out as a button
     1. click on the workout
@@ -130,6 +125,8 @@ Here are some of the items to be considered for future development.
 1. Add 'hire a trainer' option where the user can select between a small listing of trainers and also pay for the services
 2. Save some of the user input info (age, height weight, gender) into the database for quicker exercise build
 3. Move images closer to the actual workout card so that they are more easily visible on handheld devices.
+4. Progress tracking
+5. More interactivity for mobile devices.
 
 
 back to [Table of Contents](#table-of-contents)
