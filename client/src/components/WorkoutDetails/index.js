@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useSelector } from "react-redux";
 import { searchGoogleImages } from "../../utils/API";
 import { ExerciseImage } from "../ExerciseImage";
-
+import './style.css';
 
 function WorkoutDetails(props) {
   const { currentUser } = useSelector((state) => state);
@@ -51,7 +51,7 @@ function WorkoutDetails(props) {
             <tbody>
               {index.exercises.map((category, value) => (
                 <tr key={category._id} >
-                  <th id={category.exerciseName}  onClick={handleImageSearch} scope="row" >
+                  <th id={category.exerciseName}  onClick={handleImageSearch} scope="row" className="imageLink">
                     {category.exerciseName}
                   </th>
                   <td>{category.exerciseType}</td>

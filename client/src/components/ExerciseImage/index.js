@@ -1,5 +1,6 @@
 import React from "react";
 
+
 export function ExerciseImage({imageLink}) {
     return (
         <div className="w-100 mb-5 d-flex justify-content-center">

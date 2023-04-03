@@ -128,7 +128,8 @@ back to [Table of Contents](#table-of-contents)
 
 Here are some of the items to be considered for future development.
 1. Add 'hire a trainer' option where the user can select between a small listing of trainers and also pay for the services
-2. 
+2. Save some of the user input info (age, height weight, gender) into the database for quicker exercise build
+3. Move images closer to the actual workout card so that they are more easily visible on handheld devices.
 
 
 back to [Table of Contents](#table-of-contents)
