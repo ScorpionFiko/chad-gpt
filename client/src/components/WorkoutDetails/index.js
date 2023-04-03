@@ -27,8 +27,10 @@ function WorkoutDetails(props) {
   //   return exercise;
   // });
   const [imageLink, setImageLink] = useState('');
+  const [exerciseName, setExerciseName] = useState('');
   const handleImageSearch = async (event) => {
     event.preventDefault();
+    setExerciseName(event.target.id);
     const image = await searchGoogleImages(event.target.id);
     setImageLink(image.data[0].link);
     // document.getElementById('image').src=image.data[0].link
@@ -63,7 +65,7 @@ function WorkoutDetails(props) {
           </table>
         </div>
       ))}
-      {(imageLink !== '') ? <ExerciseImage imageLink={imageLink} /> : ''}
+      {(imageLink !== '') ? <ExerciseImage imageLink={imageLink} exerciseName={exerciseName} /> : ''}
     </div>
   );
 }
