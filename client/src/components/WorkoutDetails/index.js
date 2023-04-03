@@ -11,33 +11,20 @@ function WorkoutDetails(props) {
     return workout.workoutName === props.wName;
   });
 
-  // const thisWorkout = Object.values(selectedWorkout[0]);
-  // console.log(thisWorkout);
+  const thisWorkout = Object.values(selectedWorkout[0]);
+  // const workout = thisWorkout.map((workout) => {
+  //   return workout;
+  // });
 
-    console.log(selectedWorkout);
-    const thisWorkout = Object.values(selectedWorkout[0]);
-    console.log(thisWorkout);
-    console.log(thisWorkout[3][0].day);
-    const workout = thisWorkout.map((workout) => {
-      return workout;
-    });
-    console.log(workout);
-    console.log(thisWorkout[3]);
-    const workoutDays = Object.values(thisWorkout[3]);
-    console.log(workoutDays);
-    console.log(workoutDays[1].day)
+  const workoutDays = Object.values(thisWorkout[3]);
 
-    
-  const exerciseRows = workoutDays.map((index) => {
-    return index.exercises;
-  });
+  // const exerciseRows = workoutDays.map((index) => {
+  //   return index.exercises;
+  // });
 
-  const exercise = exerciseRows.map((exercise, index) => {
-    return exercise;
-  });
-
-  console.log(exerciseRows);
-  console.log(exercise[0]);
+  // const exercise = exerciseRows.map((exercise, index) => {
+  //   return exercise;
+  // });
 
   return (
     <div className="container">
@@ -54,7 +41,7 @@ function WorkoutDetails(props) {
               </tr>
             </thead>
             <tbody>
-               {index.exercises.map((category, value) => (
+              {index.exercises.map((category, value) => (
                 <tr>
                   <th key={category} value={category} scope="row">
                     {category.exerciseName}
@@ -69,45 +56,6 @@ function WorkoutDetails(props) {
         </div>
       ))}
     </div>
-    // <div className="container">
-    //   {myWorkouts.map((workout, index) => (
-    //     <div key={index} className="shadow-lg p-3 mb-5 bg-white rounded">
-    //       <h3 className="text-center">placeholder</h3>
-    //       <table className="table table-dark">
-    //         <thead>
-    //           <tr>
-    //             <th scope="col">Exercise</th>
-    //             <th scope="col">Category</th>
-    //             <th scope="col">Sets</th>
-    //             <th scope="col">Reps</th>
-    //           </tr>
-    //         </thead>
-    //         <tbody>
-    //           <tr>
-    //             <th scope="row">
-    //               {workout[0].routine[0].exercises[0].exerciseName}
-    //             </th>
-    //             <td>{workout[0].routine[0].exercises[0].exerciseType}</td>
-    //             <td>{workout[0].routine[0].exercises[0].sets}</td>
-    //             <td>{workout[0].routine[0].exercises[0].reps}</td>
-    //           </tr>
-    //           <tr>
-    //             <th scope="row">{workout[0].routine[0].exercises[1].exerciseName}</th>
-    //             <td>{workout[0].routine[0].exercises[1].exerciseType}</td>
-    //             <td>{workout[0].routine[0].exercises[1].sets}</td>
-    //             <td>{workout[0].routine[0].exercises[1].reps}</td>
-    //           </tr>
-    //           <tr>
-    //             <th scope="row">{workout[0].routine[0].exercises[2].exerciseName}</th>
-    //             <td>{workout[0].routine[0].exercises[2].exerciseType}</td>
-    //             <td>{workout[0].routine[0].exercises[2].sets}</td>
-    //             <td>{workout[0].routine[0].exercises[2].reps}</td>
-    //           </tr>
-    //         </tbody>
-    //       </table>
-    //     </div>
-    //   ))}
-    // </div>
   );
 }
 
