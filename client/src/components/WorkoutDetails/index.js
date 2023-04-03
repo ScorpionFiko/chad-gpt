@@ -1,9 +1,12 @@
 import React, { useState } from "react";
 import { useSelector } from "react-redux";
+import { searchGoogleImages } from "../../utils/API";
+import { ExerciseImage } from "../ExerciseImage";
+
 
 function WorkoutDetails(props) {
   const { currentUser } = useSelector((state) => state);
-  const [workouts] = useState([{ ...currentUser.workouts }]);
+  // const [workouts] = useState([{ ...currentUser.workouts }]);
 
   // const myWorkouts = Object.values(workouts[0]);
 
@@ -23,6 +26,13 @@ function WorkoutDetails(props) {
   // const exercise = exerciseRows.map((exercise, index) => {
   //   return exercise;
   // });
+  const [imageLink, setImageLink] = useState('');
+  const handleImageSearch = async (event) => {
+    event.preventDefault();
+    const image = await searchGoogleImages(event.target.id);
+    setImageLink(image.data[0].link);
+    // document.getElementById('image').src=image.data[0].link
+  }
 
   return (
     <div className="container">
@@ -40,8 +50,8 @@ function WorkoutDetails(props) {
             </thead>
             <tbody>
               {index.exercises.map((category, value) => (
-                <tr key={category._id}>
-                  <th value={category} scope="row">
+                <tr key={category._id} >
+                  <th id={category.exerciseName}  onClick={handleImageSearch} scope="row" >
                     {category.exerciseName}
                   </th>
                   <td>{category.exerciseType}</td>
@@ -53,6 +63,7 @@ function WorkoutDetails(props) {
           </table>
         </div>
       ))}
+      {(imageLink !== '') ? <ExerciseImage imageLink={imageLink} /> : ''}
     </div>
   );
 }
