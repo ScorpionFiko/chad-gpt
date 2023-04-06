@@ -3,6 +3,10 @@ body {
   font-family: "Roboto", sans-serif !important;
 }
 
+.card {
+  position:inherit!important;
+}
+
 .container {
   display: flex;
   justify-content: center;

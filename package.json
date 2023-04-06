@@ -1,7 +1,10 @@
 {
-  "name": "mern-shopping",
+  "name": "Chad-GPT-server",
   "version": "1.0.0",
-  "description": "",
+  "author": "Stefan Marinov, Mario Repas, Kirk Hugglund",
+  "description": "Chad-GPT workout generator - server implementation",
+  "keywords": ["MongoDB", "mongoose", "express", "react", "redux", "node", "graphql", "apollo-server", "jsonwebtoken", "jwt", "axios"],
+  "license": "MIT",
   "main": "server/server.js",
   "scripts": {
     "start": "node server/server.js",
@@ -11,23 +14,11 @@
     "build": "cd client && npm run build",
     "clean": "rm package-lock.json && rm -R node_modules && cd client && rm -R node_modules && rm package-lock.json && cd ../server && rm -R node_modules && rm package-lock.json"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
   "devDependencies": {
     "concurrently": "^5.1.0"
   },
   "dependencies": {
-    "@apollo/sandbox": "^2.1.1",
-    "bootstrap": "^5.2.3",
-    "dotenv": "^16.0.3",
-    "openai": "^3.2.1",
-    "react-bootstrap": "^2.7.2",
-    "react-icons": "^4.8.0",
-    "react-redux": "^8.0.5",
-    "redux": "^4.2.1",
-    "redux-devtools-extension": "^2.13.9",
-    "redux-thunk": "^2.4.2"
+    "@apollo/sandbox": "^2.1.1"
   },
   "engines": {
     "node": "16.x"

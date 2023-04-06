@@ -10,9 +10,14 @@ import { useDispatch } from 'react-redux'
 import { getOpenAIResponse } from '../../utils/API'
 import image from "./form-image.jpg"
 import { idbPromise } from "../../utils/helpers";
+import auth from "../../utils/auth";
 
 // State to hold user input
 function ExerciseRoutineGenerator() {
+  if (!auth.loggedIn) {
+    document.location.assign('/');
+  }
+
   const dispatch = useDispatch();
   const [fitnessInfo, setFitnessInfo] = useState({
     age: "",
@@ -82,15 +87,16 @@ function ExerciseRoutineGenerator() {
     history.push("/");
   };
 
+
   return (
     <>
       {isLoading ? (
         <Loading />
       ) : (
         <div className="container mt-5">
-          <div className="row justify-content-center">
-            <div className="col-lg-8 col-md-10">
-              <div className="card border-0 col-sm-10">
+          <div className="row justify-content-center mt-5">
+            <div className="col-lg-8 col-md-10 col-sm-12">
+              <div className="card border-0 ">
                 <div className="card-body ">
                   <div className="text-center mb-4">
                     <img src={image} alt="Exercise Routine Generator" className="img-fluid" />
