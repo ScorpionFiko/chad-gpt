@@ -1,5 +1,5 @@
 {
-  "name": "chad-gpt-server",
+  "name": "chad-gpt",
   "version": "1.0.0",
   "author": "Stefan Marinov, Mario Repas, Kirk Hugglund",
   "description": "Chad-GPT workout generator - server implementation",
