@@ -1,7 +1,8 @@
 
 import {
   UPDATE_USER,
-  LOAD_USER
+  LOAD_USER,
+  MENU_TOGGLE
 } from "./actions";
 
 export const reducer = (state, action) => {
@@ -21,6 +22,12 @@ export const reducer = (state, action) => {
           },
           
         }
+
+        case MENU_TOGGLE:
+          return {
+            ...state,
+            menuOpened: action.menuOpened
+          }
   
     default:
       return state;

@@ -1,0 +1,21 @@
+.navbar-toggler-icon.open {
+    background-image: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 8 8' ><path stroke='rgba(245, 245, 245, 0.637)' stroke-linecap='round' stroke-miterlimit='10' d='m 0,1 C 7.9374999,1 7.9374999,1 7.9374999,1 M 0,3.96875 c 7.9374999,0 7.9374999,0 7.9374999,0 M 0,6.9374999 c 7.9374999,0 7.9374999,0 7.9374999,0' /></svg>")!important;
+    -webkit-transition: .5s ease-in-out;
+    -moz-transition: .5s ease-in-out;
+    -o-transition: .5s ease-in-out;
+    transition: .5s ease-in-out;
+  
+  }
+  
+  .navbar-toggler-icon.close {
+    -webkit-transition: .5s ease-in-out;
+    -moz-transition: .5s ease-in-out;
+    -o-transition: .5s ease-in-out;
+    transition: .5s ease-in-out;
+      background-image: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 8 8' ><path stroke='rgba(245, 245, 245, 0.637)' stroke-linecap='round' stroke-miterlimit='10' d='m 0,0 c 7.9374999,7.9374999 7.9374999,7.9374999 7.9374999,7.9374999 v 0  M 7.9374999,0 C 0,7.9374999 0,7.9374999 0,7.9374999' /></svg>")!important;
+      -webkit-transform: rotate(180deg);
+      -moz-transform: rotate(180deg);
+      -o-transform: rotate(180deg);
+      transform: rotate(180deg);
+  }
+  

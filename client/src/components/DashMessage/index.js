@@ -5,7 +5,7 @@ function DashMessage() {
     const { currentUser } = useSelector(state=>state);
 
   return (
-    <div>
+    <div className="pt-5">
       <h4 className="pt-5 text-center">
         Welcome back, {currentUser.firstName}! Click on the build workout link to create a new
         workout, or select one of your existing plans to pick up where you left
