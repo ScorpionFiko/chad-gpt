@@ -1,17 +1,17 @@
 nav {
-    font-family: Roboto !important;
-    font-weight: bolder;
+  font-family: Roboto !important;
+  font-weight: bolder;
+  position:fixed!important;
+  width: 100%;
+  top: 0;
 }
 
-
-
 .navbar.custom-navbar {
-    background-color: #222125 !important;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1) !important; /* Add box-shadow */
-  }
-  
-  .navbar.custom-navbar .navbar-brand,
-  .navbar.custom-navbar .nav-link {
-    color: rgba(245, 245, 245, 0.637) !important;
-  }
-  
+  background-color: #222125 !important;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1) !important; /* Add box-shadow */
+}
+
+.navbar.custom-navbar .navbar-brand,
+.navbar.custom-navbar .nav-link {
+  color: rgba(245, 245, 245, 0.637) !important;
+}

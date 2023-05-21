@@ -11,6 +11,7 @@ import { QUERY_USER } from '../utils/queries';
 import { LOAD_USER } from '../utils/actions';
 import { useEffect } from 'react';
 import { idbPromise } from '../utils/helpers';
+import Auth from '../utils/auth';
 
 function MainLanding() {
 
@@ -18,31 +19,33 @@ function MainLanding() {
     // returns the user or not logged in
     const { loading, data } = useQuery(QUERY_USER);
     useEffect(() => {
-        if (data) {
-            dispatch({
-                type: LOAD_USER,
-                currentUser: data.user,
-            });
-            idbPromise('user', 'put', [...data.user]);
-
-        } else if (!loading) {
-            idbPromise('user', 'get').then((user) => {
+        if (Auth.loggedIn()) {
+            if (data) {
                 dispatch({
-                    type:LOAD_USER,
-                    currentUser: user,
+                    type: LOAD_USER,
+                    currentUser: data.user,
                 });
-            });
+                idbPromise('user', 'put', data.user);
+
+            } else if (!loading) {
+                idbPromise('user', 'get').then((user) => {
+                    dispatch({
+                        type: LOAD_USER,
+                        currentUser: user[0],
+                    });
+                });
+            }
         }
-
-    }, [data, loading, dispatch]);
+    }, [data, dispatch, loading]);
     const currentUser = useSelector(state => state.currentUser);
-    
-    if (loading) {
-        return "verifying your credentials";
-    }
 
-
-    if (!currentUser.firstName) {
+    if (!loading && Auth.loggedIn() && currentUser?.firstName) {
+        return (
+            <div>
+                <Dashboard />
+            </div>
+        )
+    } else {
         return (
             <div>
                 <Banner />
@@ -53,13 +56,7 @@ function MainLanding() {
                 </div>
             </div>
         )
-    } else {
-        return (
-            <div>
-                <Dashboard />
-            </div>
-        )
-    }
+    } 
 
 }
 

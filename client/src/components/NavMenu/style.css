@@ -1,0 +1,28 @@
+.overlay {
+  background-color: black;
+  height: 100vh;
+  position: fixed;
+  top: 55px;
+  width: 100%;
+  z-index: 999999999;
+}
+
+.overlay-open {
+  opacity: 1;
+  transition: 0.5s ease-in-out;
+  right: 100%;
+
+  transform: translate(100%, 0);
+}
+
+.overlay-close {
+  opacity: 0;
+  transition: 0.5s ease-in-out;
+  z-index: -1;
+  right: -100%;
+}
+
+#navbarNav > ul > li > a {
+  float: right;
+  margin-right: 3vw;
+}

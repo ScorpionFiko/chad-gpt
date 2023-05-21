@@ -7,7 +7,7 @@ import { LOAD_USER } from "../../utils/actions";
 import { idbPromise } from "../../utils/helpers";
 import "./style.css";
 
-function Login(props) {
+function Login() {
   const [formState, setFormState] = useState({ email: "", password: "" });
   const [login, { error }] = useMutation(LOGIN);
   const dispatch = useDispatch();

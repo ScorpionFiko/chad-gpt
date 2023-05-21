@@ -7,6 +7,7 @@ const composedEnhancers = composeWithDevTools();
 
 let preloadedState = {
     currentUser: {},
+    menuOpened: false,
 };
 
   const store = createStore(reducer, preloadedState, composedEnhancers);
