@@ -9,7 +9,9 @@ import { RECORD_ANSWER } from "../utils/actions";
 const BuildWorkout = () => {
 
   const questions = useSelector(state => state.workoutQuestions);
-
+  if (!questions) {
+    window.location.assign('/');
+  }
   const dispatch = useDispatch();
   // if token is valid it will return user data
   let [questionIdIndex, setQuestionIdIndex] = useState(0);
