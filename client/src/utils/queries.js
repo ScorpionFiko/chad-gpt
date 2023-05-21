@@ -39,3 +39,20 @@ export const QUERY_USER = gql`
   }
 }
 `;
+
+export const GET_QUESTIONS = gql`
+  {
+    workoutQuestions {
+    _id
+    question
+    fieldType
+    validation
+      minValue
+      maxValue
+      stepValue
+      optionValues
+      fieldName
+    
+  }
+}
+`;
