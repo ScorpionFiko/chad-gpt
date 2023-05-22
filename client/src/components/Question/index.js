@@ -2,6 +2,7 @@ import React, {useState } from "react";
 import "./style.css"
 import { useDispatch, useSelector } from "react-redux";
 import { RECORD_ANSWER } from "../../utils/actions";
+import Loading from "../Loading";
 
 /// State to hold user input
 function Question() {
@@ -27,7 +28,7 @@ function Question() {
       if (questionIdIndex < questionIds.length - 1) {
         setQuestionIdIndex(questionIdIndex + 1);
       } else {
-        alert("BuildWorkout")
+        return <Loading />
       }
     }
   }
