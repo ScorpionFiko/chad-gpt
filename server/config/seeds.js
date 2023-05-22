@@ -9,11 +9,6 @@ db.once('open', async () => {
   await WorkoutQuestions.deleteMany();
   const workoutQuestions = await WorkoutQuestions.insertMany([
     {
-      question: "Choose your units?", fieldType: "range", validation: null, 
-       
-      maxValue:"1", minValue: "0", stepValue: "1", fieldName: "units"
-    },
-    {
       question: "What is your age?", fieldType: "range", validation: null, 
        
       maxValue:"100", minValue: "15", stepValue: "1", fieldName: "age"
@@ -48,30 +43,7 @@ db.once('open', async () => {
       ], fieldName: "height"
     },
     {
-      question: "What is your weight?", fieldType: "select", validation: null, optionValues: [
-        "< 90 lbs",
-        "91 ~ 100 lbs",
-        "101 ~ 110 lbs",
-        "111 ~ 120 lbs",
-        "121 ~ 130 lbs",
-        "131 ~ 140 lbs",
-        "141 ~ 150 lbs",
-        "151 ~ 160 lbs",
-        "171 ~ 180 lbs",
-        "181 ~ 190 lbs",
-        "191 ~ 200 lbs",
-        "201 ~ 210 lbs",
-        "211 ~ 220 lbs",
-        "221 ~ 230 lbs",
-        "231 ~ 240 lbs",
-        "241 ~ 250 lbs",
-        "251 ~ 260 lbs",
-        "261 ~ 270 lbs",
-        "271 ~ 280 lbs",
-        "281 ~ 290 lbs",
-        "291 ~ 300 lbs",
-        "> 300 lbs",
-      ], fieldName: "weight"
+      question: "What is your weight?", fieldType: "range", minValue: "90" , maxValue: "300", stepValue: "5",validation: null, optionValues: null, fieldName: "weight"
     },
     {
       question: "What is your gender at birth?", fieldType: "select", validation: null, optionValues: [
@@ -80,22 +52,7 @@ db.once('open', async () => {
       ], fieldName: "gender"
     },
     {
-      question: "How many times per week will you train?", fieldType: "select", validation: null, optionValues: [
-        "1",
-        "2",
-        "3",
-        "4",
-        "5",
-        "6",
-        "7",
-        "8",
-        "9",
-        "10",
-        "11",
-        "12",
-        "13",
-        "14",
-      ], fieldName: "trainFrequency"
+      question: "How many times per week will you train?", fieldType: "range", validation: null, optionValues: null, fieldName: "exerciseFrequency", minValue:"1", maxValue:"14", stepValue: "1"
     },
     {
       question: "What equipment do you have access to?", fieldType: "select", validation: null, optionValues: [
@@ -112,7 +69,7 @@ db.once('open', async () => {
         "lose weight",
         "gain definition",
         "improve circulation",
-      ], fieldName: "goal"
+      ], fieldName: "fitnessGoal"
     }
 
   ]);
