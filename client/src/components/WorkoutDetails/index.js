@@ -3,6 +3,13 @@ import { useSelector } from "react-redux";
 import { searchGoogleImages } from "../../utils/API";
 import { ExerciseImage } from "../ExerciseImage";
 import './style.css';
+import Container from "react-bootstrap/Container";
+import Row from "react-bootstrap/Row";
+import Button from "react-bootstrap/Button";
+import Col from "react-bootstrap/Col";
+import Card from "react-bootstrap/Card";
+import Stack from "react-bootstrap/Stack";
+import ListGroup from "react-bootstrap/ListGroup";
 
 function WorkoutDetails(props) {
   const { currentUser } = useSelector((state) => state);
@@ -37,36 +44,31 @@ function WorkoutDetails(props) {
   }
 
   return (
-    <div className="container">
-      {workoutDays.map((index) => (
-        <div className="shadow-lg p-3 mb-5 bg-white rounded" key={index._id}>
-          <h3 className="text-center">{index.day}</h3>
-          <table className="table table-dark">
-            <thead>
-              <tr>
-                <th scope="col">Exercise</th>
-                <th scope="col">Category</th>
-                <th scope="col">Sets</th>
-                <th scope="col">Reps</th>
-              </tr>
-            </thead>
-            <tbody>
-              {index.exercises.map((category, value) => (
-                <tr key={category._id} >
-                  <th id={category.exerciseName}  onClick={handleImageSearch} scope="row" className="imageLink">
-                    {category.exerciseName}
-                  </th>
-                  <td>{category.exerciseType}</td>
-                  <td>{category.sets}</td>
-                  <td>{category.reps}</td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
-      ))}
-      {(imageLink !== '') ? <ExerciseImage imageLink={imageLink} exerciseName={exerciseName} /> : ''}
-    </div>
+    <Container>
+      <Col>
+        {workoutDays.map((day) => (
+          <Card key={day._id} className="shadow-lg mb-5 bg-white rounded">
+            <Card.Header className="text-center">{day.day}</Card.Header>
+            <Card.Body>
+              <ListGroup variant="flush">
+                {day.exercises.map((exercise) => (
+                  <ListGroup.Item key={exercise._id} onClick={handleImageSearch} className="imageLink">
+                    <strong>{exercise.exerciseName}</strong>
+                    <br />
+                    Category: {exercise.exerciseType}
+                    <br />
+                    Sets: {exercise.sets}
+                    <br />
+                    Reps: {exercise.reps}
+                  </ListGroup.Item>
+                ))}
+              </ListGroup>
+            </Card.Body>
+          </Card>
+        ))}
+      </Col>
+      {imageLink !== '' && <ExerciseImage imageLink={imageLink} exerciseName={exerciseName} />}
+    </Container>
   );
 }
 
