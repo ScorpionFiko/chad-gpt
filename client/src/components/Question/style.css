@@ -80,3 +80,7 @@ margin-top: 75px;
 .card {
   position:inherit!important;
 }
+
+form {
+  padding-top: 100px;
+}
