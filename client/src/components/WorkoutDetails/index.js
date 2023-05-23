@@ -32,7 +32,7 @@ function WorkoutDetails(props) {
     event.preventDefault();
     setExerciseName(event.target.id);
     const image = await searchGoogleImages(event.target.id);
-    setImageLink(image.data[0].link);
+    setImageLink(image.data[0]?.link);
     // document.getElementById('image').src=image.data[0].link
   }
 
