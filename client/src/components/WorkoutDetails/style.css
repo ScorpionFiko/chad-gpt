@@ -2,3 +2,6 @@
     cursor: pointer;
 }
 
+.list-group-item {
+    position:inherit!important;
+  }
