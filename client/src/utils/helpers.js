@@ -12,6 +12,7 @@ export function idbPromise(storeName, method, object) {
     request.onupgradeneeded = function(e) {
       const db = request.result;
       db.createObjectStore('user', { keyPath: '_id' });
+      db.createObjectStore('workoutQuestions', { keyPath: '_id' });
     };
 
     request.onerror = function(e) {
@@ -52,3 +53,4 @@ export function idbPromise(storeName, method, object) {
     };
   });
 }
+

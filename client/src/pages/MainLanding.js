@@ -7,8 +7,8 @@ import Dashboard from './Dashboard';
 import { useSelector, useDispatch } from 'react-redux';
 import Auth from '../utils/auth';
 import { useQuery } from '@apollo/client';
-import { QUERY_USER } from '../utils/queries';
-import { LOAD_USER } from '../utils/actions';
+import { GET_QUESTIONS, QUERY_USER } from '../utils/queries';
+import { LOAD_USER, LOAD_QUESTIONS } from '../utils/actions';
 import { useEffect } from 'react';
 import { idbPromise } from '../utils/helpers';
 import Auth from '../utils/auth';
@@ -16,18 +16,19 @@ import Auth from '../utils/auth';
 function MainLanding() {
 
     const dispatch = useDispatch();
-    // returns the user or not logged in
-    const { loading, data } = useQuery(QUERY_USER);
+    // if token is valid it will return user data
+    const { loading: userLoading, data: userData } = useQuery(QUERY_USER);
+    const { loading: questionLoading, data: questionData } = useQuery(GET_QUESTIONS);
     useEffect(() => {
         if (Auth.loggedIn()) {
-            if (data) {
+            if (userData) {
                 dispatch({
                     type: LOAD_USER,
-                    currentUser: data.user,
+                    currentUser: userData.user,
                 });
-                idbPromise('user', 'put', data.user);
+                idbPromise('user', 'put', userData.user);
 
-            } else if (!loading) {
+            } else if (!userLoading) {
                 idbPromise('user', 'get').then((user) => {
                     dispatch({
                         type: LOAD_USER,
@@ -36,10 +37,27 @@ function MainLanding() {
                 });
             }
         }
-    }, [data, dispatch, loading]);
+
+        if (questionData) {
+            dispatch({
+              type: LOAD_QUESTIONS,
+              workoutQuestions: questionData.workoutQuestions,
+            });
+            idbPromise('workoutQuestions', 'put', { _id: "WQ", questions: questionData.workoutQuestions })
+    
+          } else if (!questionLoading) {
+            idbPromise('workoutQuestions', 'get').then((workoutQuestions) => {
+              dispatch({
+                type: LOAD_QUESTIONS,
+                workoutQuestions: workoutQuestions[0].questions,
+              });
+            });
+          }
+    
+    }, [userData, dispatch, userLoading, questionLoading, questionData]);
     const currentUser = useSelector(state => state.currentUser);
 
-    if (!loading && Auth.loggedIn() && currentUser?.firstName) {
+    if (!userLoading && Auth.loggedIn() && currentUser?.firstName) {
         return (
             <div>
                 <Dashboard />
