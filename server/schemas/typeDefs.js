@@ -61,17 +61,18 @@ const typeDefs = gql`
     routine: [WorkoutRoutine]
   }
 
-  
+
+  type WorkoutAnswers {
+    _id: ID
+    answer: String
+  }
+
   type WorkoutQuestions {
     _id: ID
     question: String,
-    fieldType: String,
+    answerType: String,
     validation: String,
-    minValue: String,
-    maxValue: String,
-    stepValue: String,
-    optionValues: [String],
-    fieldName: String
+    answers: [WorkoutAnswers]
   }
 
   type User {
