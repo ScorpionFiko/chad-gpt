@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const workoutAnswerSchema = require('./WorkoutAnswers');
 const { Schema } = mongoose;
 
 const workoutQuestions = new Schema({
@@ -7,13 +8,11 @@ const workoutQuestions = new Schema({
     required: true,
     trim: true
   },
-  fieldType: {
+  answerType: {
     type: String,
     required: true
-    // possible fieldTypes: 
-    // text: user free form input
-    // textarea: long form user free form input
-    // range: min and max value
+    // possible answerTypes: 
+    // input: user input value
     // select: dropdown box
     // multiple: dropdown box with multiple selections
 
@@ -21,33 +20,9 @@ const workoutQuestions = new Schema({
   validation: {
     type: String,
     required: false
-    // regex for validating text and text area
+    // regex for validating input
   },
-  minValue: {
-    type: String,
-    required: false
-    // min value for range input
-  },
-  maxValue: {
-    type: String,
-    required: false
-    // max value for range input
-  },
-  stepValue: {
-    type: String,
-    required: false
-    // step value for slider for range input
-  },
-  optionValues: [{
-    type: String,
-    required: false
-    // option values for select input boxes
-  }],
-  fieldName: {
-    type: String,
-    required:true
-    //name of the field
-  }
+  answers: [workoutAnswerSchema]
 },
 { collection: 'workoutquestions' });
 

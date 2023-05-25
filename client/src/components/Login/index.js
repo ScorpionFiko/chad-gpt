@@ -27,7 +27,6 @@ function Login() {
       idbPromise('user', 'put', {
         ...mutationResponse.data.login.user,
       });
-      // save token to local storage
       const token = mutationResponse.data.login.token;
       Auth.login(token);
     } catch (e) {
